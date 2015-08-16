@@ -3,11 +3,16 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include "Logger.h"
 
 
 int main()
 {
-	std::cout << "szia";
+	
+	Logger* log;
+	log = Logger::getInstance();
+	log->printToDisplay("hello");
+
 	return 0;
 }
 
