@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Part.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -158,6 +159,9 @@
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="RoboticArm.cpp" />
     <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RoboticArm.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
