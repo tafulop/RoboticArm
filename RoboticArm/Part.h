@@ -4,9 +4,11 @@ class Part
 
 private:
 	
-	int count;	// number of part objects
+	static int count;
+	int id;
+	float mass;
 	int position;
-	int ID;
+	
 
 
 public:
@@ -14,5 +16,7 @@ public:
 	// constructor increments the count member variable
 	Part();
 	~Part();
+
+	static int getNumberOfParts();
 };
 

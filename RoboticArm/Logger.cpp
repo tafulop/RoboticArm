@@ -11,6 +11,11 @@ void Logger::printToDisplay(std::string text)
 	std::cout << text << std::endl;
 }
 
+void Logger::printToDisplay(int number)
+{
+	std::cout << "(int) " << number << std::endl;
+}
+
 bool Logger::instanceFlag = false;
 Logger* Logger::single = nullptr;
 

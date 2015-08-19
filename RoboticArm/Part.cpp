@@ -10,4 +10,10 @@ Part::Part()
 
 Part::~Part()
 {
+
+}
+
+int Part::getNumberOfParts()
+{	
+	return Part::count;
 }

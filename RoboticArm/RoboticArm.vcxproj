@@ -148,6 +148,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArmPart.h" />
+    <ClInclude Include="Joint.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="resource.h" />
@@ -155,6 +157,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArmPart.cpp" />
+    <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="RoboticArm.cpp" />
