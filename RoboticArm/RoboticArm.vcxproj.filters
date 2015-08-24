@@ -39,6 +39,9 @@
     <ClInclude Include="ArmPart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PartFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ArmPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PartFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

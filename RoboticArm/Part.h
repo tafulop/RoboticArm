@@ -1,15 +1,15 @@
 #pragma once
-class Part
+
+#include "PartFactory.h"
+
+class Part : public PartFactory
 {
 
 private:
 	
-	static int count;
 	int id;
 	float mass;
 	int position;
-	
-
 
 public:
 	

@@ -152,6 +152,7 @@
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Part.h" />
+    <ClInclude Include="PartFactory.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Part.cpp" />
+    <ClCompile Include="PartFactory.cpp" />
     <ClCompile Include="RoboticArm.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>

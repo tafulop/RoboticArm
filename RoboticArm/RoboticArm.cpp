@@ -6,6 +6,7 @@
 #include "Logger.h"
 #include "Part.h"
 #include "Joint.h"
+#include "PartFactory.h"
 
 int Part::count = 0;
 
@@ -16,6 +17,9 @@ int main()
 	log = Logger::getInstance();
 	log->printToDisplay("Program started...");
 
+	// Partfactory
+	PartFactory* factory;
+	factory = PartFactory::getInstance();
 
 	// part test
 	Joint tJoint(11.5f,55.6f);
@@ -27,8 +31,6 @@ int main()
 
 	Joint tJoint3(0, 0);
 	log->printToDisplay("Number of parts: " + std::to_string(tJoint.getNumberOfParts()));
-
-	
 
 
 	//std::cout << Part::getNumberOfParts();
