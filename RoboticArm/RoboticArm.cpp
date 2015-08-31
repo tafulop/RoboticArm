@@ -19,9 +19,19 @@ int main()
 	factory = PartFactory::getInstance();
 
 	// get joint via partfactory
-	Joint* j1 = factory->CreateJoint(11, 11);
-	if (j1->isAxialOutOfLimit(10) == true) {
+	Joint* j1 = factory->CreateJoint(-11, 11);
+
+	if (j1 == nullptr)log->printToDisplay("Joint can not be created.");
+	
+	try
+	{
+		if (j1->isAxialOutOfLimit(10) == true) {
 		log->printToDisplay("NOK");
+		}
+	}
+	catch(int e)
+	{
+		log->printToDisplay("nullptr");
 	}
 
 
