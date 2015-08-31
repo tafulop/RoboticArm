@@ -1,6 +1,7 @@
 #pragma once
-#include "Part.h"
+
 #include "Logger.h"
+#include "Part.h"
 
 class Joint : public Part
 {

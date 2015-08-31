@@ -4,11 +4,8 @@
 #include "stdafx.h"
 #include <iostream>
 #include "Logger.h"
-#include "Part.h"
-#include "Joint.h"
 #include "PartFactory.h"
 
-int Part::count = 0;
 
 int main()
 {
@@ -21,16 +18,11 @@ int main()
 	PartFactory* factory;
 	factory = PartFactory::getInstance();
 
-	// part test
-	Joint tJoint(11.5f,55.6f);
-	log->printToDisplay("Number of parts: " + std::to_string(tJoint.getNumberOfParts()));
-
-	Joint tJoint2(-11.5f, -55.6f);
-	log->printToDisplay("Number of parts: " + std::to_string(tJoint.getNumberOfParts()));
-	tJoint2.isAxialOutOfLimit(25);
-
-	Joint tJoint3(0, 0);
-	log->printToDisplay("Number of parts: " + std::to_string(tJoint.getNumberOfParts()));
+	// get joint via partfactory
+	Joint* j1 = factory->CreateJoint(11, 11);
+	if (j1->isAxialOutOfLimit(10) == true) {
+		log->printToDisplay("NOK");
+	}
 
 
 	//std::cout << Part::getNumberOfParts();

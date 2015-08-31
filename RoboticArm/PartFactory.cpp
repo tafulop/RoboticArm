@@ -28,3 +28,17 @@ PartFactory* PartFactory::getInstance()
 	}
 
 }
+
+Joint * PartFactory::CreateJoint(float radialForceLimit, float axialForceLimt)
+{
+	if (radialForceLimit > 0 || axialForceLimt > 0)
+	{
+		return new Joint(radialForceLimit, axialForceLimt);
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+	
+

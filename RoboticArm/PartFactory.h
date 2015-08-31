@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "Joint.h"
 
 // PartFactroy implements factory design pattern (singleton too)
 
@@ -18,6 +19,6 @@ private:
 
 public:
 	static PartFactory* getInstance();
-	virtual PartFactory* GetPart(std::string name);
+	Joint* CreateJoint(float radialForceLimit, float RadialForceLimit);
 };
 

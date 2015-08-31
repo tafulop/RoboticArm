@@ -1,8 +1,7 @@
 #pragma once
 
-#include "PartFactory.h"
 
-class Part : public PartFactory
+class Part
 {
 
 private:
@@ -16,7 +15,5 @@ public:
 	// constructor increments the count member variable
 	Part();
 	~Part();
-
-	static int getNumberOfParts();
 };
 
