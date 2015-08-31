@@ -4,8 +4,12 @@
 
 class ArmPart :	public Part
 {
-public:	~ArmPart();
+private:
+	float length;
 
+
+public:	~ArmPart();
+		ArmPart(float length);
 
 };
 

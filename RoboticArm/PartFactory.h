@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "Joint.h"
+#include "ArmPart.h"
 
 // PartFactroy implements factory design pattern (singleton too)
 
@@ -20,5 +21,6 @@ private:
 public:
 	static PartFactory* getInstance();
 	Joint* CreateJoint(float radialForceLimit, float RadialForceLimit);
+	ArmPart* CreateArmPart(float length);
 };
 

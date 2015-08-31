@@ -40,5 +40,17 @@ Joint * PartFactory::CreateJoint(float radialForceLimit, float axialForceLimt)
 		return nullptr;
 	}
 }
+
+ArmPart * PartFactory::CreateArmPart(float length)
+{
+	if (length > 0) 
+	{
+		return new ArmPart(length);
+	}
+	else
+	{
+		return nullptr;
+	}
+}
 	
 

@@ -23,16 +23,9 @@ int main()
 
 	if (j1 == nullptr)log->printToDisplay("Joint can not be created.");
 	
-	try
-	{
-		if (j1->isAxialOutOfLimit(10) == true) {
-		log->printToDisplay("NOK");
-		}
-	}
-	catch(int e)
-	{
-		log->printToDisplay("nullptr");
-	}
+
+	// get armpart
+	ArmPart* a1 = factory->CreateArmPart(10);
 
 
 	//std::cout << Part::getNumberOfParts();
