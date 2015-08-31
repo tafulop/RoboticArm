@@ -5,11 +5,15 @@
 
 class Joint : public Part
 {
+
+	friend class PartFactory;
+
 private:
 	float maxRadialForce;
 	float maxAxialForce;
 	float angle;
 	Logger* log;
+	Joint(int id, float mass, float maxRadialForce, float maxAxialForce);
 
 
 public:
@@ -18,7 +22,7 @@ public:
 	//Joint();
 	~Joint();
 
-	Joint(float maxRadialForce, float maxAxialForce);
+	
 
 	bool isAxialOutOfLimit(float force);
 	bool isRadialOutOfLimit(float force);

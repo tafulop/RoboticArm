@@ -6,18 +6,28 @@ Logger::~Logger()
 	instanceFlag = false;
 }
 
-void Logger::printToDisplay(std::string text)
-{
-	std::cout << text << std::endl;
-}
-
 void Logger::printToDisplay(int number)
 {
+	if (Logger::consoleLogging == false)return;
+
 	std::cout << "(int) " << number << std::endl;
 }
 
+void Logger::enableConsoleLogging()
+{
+	Logger::consoleLogging = true;
+}
+
+void Logger::disableConsoleLogging()
+{
+	Logger::consoleLogging = false;
+}
+
+
+
 bool Logger::instanceFlag = false;
 Logger* Logger::single = nullptr;
+bool Logger::consoleLogging = false;
 
 Logger::Logger()
 {

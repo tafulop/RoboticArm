@@ -4,12 +4,15 @@
 
 class ArmPart :	public Part
 {
+	friend class PartFactory;
+
 private:
 	float length;
+	ArmPart(int id, float mass, float length);
 
 
 public:	~ArmPart();
-		ArmPart(float length);
+		
 
 };
 

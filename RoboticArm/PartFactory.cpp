@@ -6,6 +6,7 @@ PartFactory* PartFactory::factory = nullptr;
 
 PartFactory::PartFactory()
 {
+	count = 0;
 }
 
 
@@ -29,11 +30,12 @@ PartFactory* PartFactory::getInstance()
 
 }
 
-Joint * PartFactory::CreateJoint(float radialForceLimit, float axialForceLimt)
+Joint * PartFactory::CreateJoint(int id, float mass, float radialForceLimit, float axialForceLimt)
 {
-	if (radialForceLimit > 0 && axialForceLimt > 0)
+	if (radialForceLimit > 0 && axialForceLimt > 0 && mass > 0)
 	{
-		return new Joint(radialForceLimit, axialForceLimt);
+		count++;
+		return new Joint(id, mass, radialForceLimit, axialForceLimt);
 	}
 	else
 	{
@@ -41,16 +43,22 @@ Joint * PartFactory::CreateJoint(float radialForceLimit, float axialForceLimt)
 	}
 }
 
-ArmPart * PartFactory::CreateArmPart(float length)
+ArmPart * PartFactory::CreateArmPart(int id, float mass, float length)
 {
 	if (length > 0) 
 	{
-		return new ArmPart(length);
+		count++;
+		return new ArmPart(id, mass, length);
 	}
 	else
 	{
 		return nullptr;
 	}
+}
+
+int PartFactory::GetNumberOfParts()
+{
+	return count;
 }
 	
 

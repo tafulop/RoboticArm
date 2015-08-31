@@ -4,16 +4,18 @@
 class Part
 {
 
-private:
+protected:
 	
 	int id;
 	float mass;
 	int position;
 
+	Part();
+	~Part();
+
 public:
 	
 	// constructor increments the count member variable
-	Part();
-	~Part();
+	
 };
 

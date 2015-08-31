@@ -5,11 +5,13 @@ Joint::~Joint()
 {
 }
 
-Joint::Joint(float maxAxialForce, float maxRadialForce)
+Joint::Joint(int id, float mass, float maxAxialForce, float maxRadialForce)
 {
 	
 	// get logger singleton
 	this->log = Logger::getInstance();
+	this->id = id;
+	this->mass = mass;
 	this->maxAxialForce = maxAxialForce;
 	this->maxRadialForce = maxRadialForce;
 }
