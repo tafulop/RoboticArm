@@ -5,7 +5,7 @@ Joint::~Joint()
 {
 }
 
-Joint::Joint(int id, float mass, float maxAxialForce, float maxRadialForce)
+Joint::Joint(int id, float mass, float maxRadialForce, float maxAxialForce)
 {
 	
 	// get logger singleton

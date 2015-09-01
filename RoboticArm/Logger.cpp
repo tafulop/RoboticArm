@@ -13,6 +13,22 @@ void Logger::printToDisplay(int number)
 	std::cout << "(int) " << number << std::endl;
 }
 
+void Logger::lineFeed(int numOfNewLines, logTarget target)
+{
+	// return if newlines value is invalid
+	if(numOfNewLines < 0)return;
+
+	int i = 0;
+
+	switch (target)
+	{
+	case CONSOLE:		for (i = 0; i < numOfNewLines; i++) {
+							printToDisplay("");
+							};
+	}
+	
+}
+
 void Logger::enableConsoleLogging()
 {
 	Logger::consoleLogging = true;

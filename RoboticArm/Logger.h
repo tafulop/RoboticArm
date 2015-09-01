@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+// logger implements singleton design pattern
+
 class Logger
 {
 private:
@@ -13,6 +15,7 @@ private:
 	~Logger();
 
 public:
+	const enum logTarget {CONSOLE, FILE};
 	static Logger* getInstance();
 	void printToDisplay(std::string text)
 	{
@@ -20,6 +23,7 @@ public:
 		std::cout << text << std::endl;
 	}
 	void printToDisplay(int number);
+	void lineFeed(int numOfNewLines, logTarget target);
 	void enableConsoleLogging();
 	void disableConsoleLogging();
 	

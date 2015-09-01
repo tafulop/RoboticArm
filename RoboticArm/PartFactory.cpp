@@ -37,6 +37,15 @@ Joint * PartFactory::CreateJoint(float mass, float radialForceLimit, float axial
 	if (radialForceLimit > 0 && axialForceLimt > 0 && mass > 0)
 	{
 		count++;
+
+		log->printToDisplay("Joint has been created with the following parameters:");
+		log->printToDisplay("ID:	\t\t" + std::to_string(this->id));
+		log->printToDisplay("Mass:	\t\t" + std::to_string(mass));
+		log->printToDisplay("Radial limit:	\t" + std::to_string(radialForceLimit));
+		log->printToDisplay("Axial limit:	\t" + std::to_string(axialForceLimt));
+		log->printToDisplay("");
+
+
 		return new Joint(this->id++, mass, radialForceLimit, axialForceLimt);
 	}
 	else
@@ -50,8 +59,8 @@ ArmPart * PartFactory::CreateArmPart(float mass, float length)
 	if (length > 0) 
 	{
 		count++;
-		log->printToDisplay("ArmPart has been created with following parameters:");
-		log->printToDisplay("Id:	\t\t"	+ std::to_string(this->id));
+		log->printToDisplay("ArmPart has been created with the following parameters:");
+		log->printToDisplay("ID:	\t\t"	+ std::to_string(this->id));
 		log->printToDisplay("Mass:	\t\t"	+ std::to_string(mass));
 		log->printToDisplay("Length: \t\t"+ std::to_string(length));
 		log->printToDisplay("");
@@ -69,8 +78,13 @@ Effector * PartFactory::CreateEffector(float mass)
 	if (mass > 0)
 	{
 		count++;
-		log->printToDisplay("Effector has been created. Mass: " + std::to_string(mass));
-		return new Effector(mass);
+		
+		log->printToDisplay("Effector has been created with the following parameters:");
+		log->printToDisplay("ID: \t\t\t" + std::to_string(id));
+		log->printToDisplay("Mass: \t\t\t" + std::to_string(mass));
+		log->printToDisplay("");
+
+		return new Effector(this->id++, mass);
 	}
 	else
 	{

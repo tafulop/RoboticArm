@@ -6,7 +6,7 @@ class Effector :
 	friend class PartFactory;
 
 private:
-	Effector(float mass);
+	Effector(int id, float mass);
 public:
 	//Effector();
 	~Effector();

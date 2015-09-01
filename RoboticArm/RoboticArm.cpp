@@ -14,28 +14,24 @@ int main()
 	log = Logger::getInstance();
 	log->enableConsoleLogging();
 	log->printToDisplay("Program started...");
-
-	//log->disableConsoleLogging();
-	log->printToDisplay("test");
-
+	log->lineFeed(1,Logger::CONSOLE);
+	
 	// Partfactory
 	PartFactory* factory;
 	factory = PartFactory::getInstance();
 
-	// get joint via partfactory
-	Joint* j1 = factory->CreateJoint(11.1, 11, 11);
+	// JOINT
+	Joint* j1 = factory->CreateJoint(1,2,3);
 
-	if (j1 == nullptr)log->printToDisplay("Joint can not be created.");
-
-	// Effector
+	// EFFECTOR
 	Effector* e1 = factory->CreateEffector(123);
-	
 
-	// get armpart
+	// ARMPART
 	ArmPart* a1 = factory->CreateArmPart(14.5, 16.7);
 
-	log->printToDisplay(factory->GetNumberOfParts());
-	//std::cout << Part::getNumberOfParts();
+	// NUMBER OF CREATED PARTS
+	log->printToDisplay("Number of parts: " + std::to_string(factory->GetNumberOfParts()));
+	
 
 	return 0;
 }

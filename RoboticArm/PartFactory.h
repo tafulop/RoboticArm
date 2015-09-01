@@ -8,11 +8,9 @@
 
 // PartFactroy implements factory design pattern (singleton too)
 
-
 class PartFactory
 {
 private:
-	//std::string[2] = {"Joint", "ArmPart"};
 	static bool instanceFlag;
 	static PartFactory* factory;
 	int count;
@@ -24,9 +22,11 @@ private:
 
 public:
 	static PartFactory* getInstance();
-	Joint* CreateJoint(float mass, float radialForceLimit, float RadialForceLimit);
+	int GetNumberOfParts();
+	
+	Joint* CreateJoint(float mass, float radialForceLimit, float axialForceLimit);
 	ArmPart* CreateArmPart(float mass, float length);
 	Effector* CreateEffector(float mass);
-	int GetNumberOfParts();
+	
 };
 
