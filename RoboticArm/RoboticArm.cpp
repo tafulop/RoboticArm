@@ -16,7 +16,8 @@ int main()
 	log->printToDisplay("Program started...");
 	log->lineFeed(1,Logger::CONSOLE);
 	
-	// Partfactory
+	// Partfactory 
+	// TO-DO: use exception to check if returned pointer is not nullptr
 	PartFactory* factory;
 	factory = PartFactory::getInstance();
 
