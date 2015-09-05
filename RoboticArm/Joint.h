@@ -3,28 +3,31 @@
 #include "Logger.h"
 #include "Part.h"
 
-class Joint : public Part
-{
+namespace RoboticArm {
 
-	friend class PartFactory;
+	class Joint : public Part
+	{
 
-private:
-	float maxRadialForce;
-	float maxAxialForce;
-	float angle;
-	Logger* log;
-	Joint(int id, float mass, float maxRadialForce, float maxAxialForce);
+		friend class PartFactory;
+
+	private:
+		float maxRadialForce;
+		float maxAxialForce;
+		float angle;
+		Logger* log;
+		Joint(int id, float mass, float maxRadialForce, float maxAxialForce);
 
 
-public:
+	public:
 
-	// default de/constructor
-	//Joint();
-	~Joint();
+		// default de/constructor
+		//Joint();
+		~Joint();
 
-	
 
-	bool isAxialOutOfLimit(float force);
-	bool isRadialOutOfLimit(float force);
-};
 
+		bool isAxialOutOfLimit(float force);
+		bool isRadialOutOfLimit(float force);
+	};
+
+}

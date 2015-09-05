@@ -1,5 +1,6 @@
 #include "Joint.h"
 
+using namespace RoboticArm;
 
 Joint::~Joint()
 {

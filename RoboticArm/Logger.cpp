@@ -1,5 +1,6 @@
 #include "Logger.h"
 
+using namespace RoboticArm;
 
 Logger::~Logger()
 {
@@ -37,6 +38,11 @@ void Logger::enableConsoleLogging()
 void Logger::disableConsoleLogging()
 {
 	Logger::consoleLogging = false;
+}
+
+int RoboticArm::Logger::multi(int a, int b)
+{
+	return a *b;
 }
 
 

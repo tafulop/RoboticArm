@@ -1,21 +1,22 @@
 #pragma once
 
+namespace RoboticArm {
+	class Part
+	{
 
-class Part
-{
+	protected:
 
-protected:
-	
-	int id;
-	float mass;
-	int position;
+		int id;
+		float mass;
+		int position;
 
-	Part();
-	~Part();
+		Part();
+		~Part();
 
-public:
-	
-	// constructor increments the count member variable
-	
-};
+	public:
 
+		// constructor increments the count member variable
+
+	};
+
+}

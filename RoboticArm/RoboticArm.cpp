@@ -9,6 +9,8 @@
 
 int main()
 {
+	using namespace RoboticArm;
+
 	// Logger test
 	Logger* log;
 	log = Logger::getInstance();
@@ -28,7 +30,7 @@ int main()
 	Effector* e1 = factory->CreateEffector(123);
 
 	// ARMPART
-	ArmPart* a1 = factory->CreateArmPart(14.5, 16.7);
+	ArmPart* a1 = factory->CreateArmPart(143.6f, 16.7f);
 
 	// NUMBER OF CREATED PARTS
 	log->printToDisplay("Number of parts: " + std::to_string(factory->GetNumberOfParts()));

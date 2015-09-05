@@ -1,5 +1,7 @@
 #include "PartFactory.h"
 
+using namespace RoboticArm;
+
 bool PartFactory::instanceFlag = false;
 PartFactory* PartFactory::factory = nullptr;
 
