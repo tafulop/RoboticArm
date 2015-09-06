@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 
+
 // logger implements singleton design pattern
 
 namespace RoboticArm {
@@ -16,6 +17,7 @@ namespace RoboticArm {
 		static bool instanceFlag;
 		static Logger *single;
 		std::ofstream logFile;
+		std::string logFileName;
 		Logger();
 		~Logger();
 
@@ -28,8 +30,7 @@ namespace RoboticArm {
 		void lineFeed(int numOfNewLines, logTarget target);
 		void enableLogging(logTarget target);
 		void disableLogging(logTarget target);
-
-		int multi(int, int);
+		bool isLoggingEnabled(logTarget target);
 
 	};
 

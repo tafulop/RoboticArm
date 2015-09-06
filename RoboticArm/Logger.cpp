@@ -9,7 +9,8 @@ bool Logger::fileLogging = false;
 
 Logger::Logger()
 {
-	logFile.open("E:\RoboticArm_log.txt", std::ios::out | std::ios::trunc);
+	instanceFlag = true;
+	logFile.open("E:\\RoboticArmLog2.txt" , std::ios::out | std::ios::trunc);
 }
 
 Logger::~Logger()
@@ -48,11 +49,10 @@ void Logger::printLine(int number, Logger::logTarget target)
 		logFile << number << std::endl;
 	}
 
-	if (Logger::fileLogging == true && Logger::consoleLogging == true
-		&& target == Logger::BOTH) 
+	if (target == Logger::BOTH) 
 	{
-		std::cout << number << std::endl;
-		logFile << number << std::endl;
+		if (Logger::consoleLogging == true)std::cout << number << std::endl;
+		if (Logger::fileLogging == true)logFile << number << std::endl;
 	}
 }
 
@@ -68,11 +68,10 @@ void RoboticArm::Logger::printLine(std::string text, Logger::logTarget target)
 		logFile << text << std::endl;
 	}
 
-	if (Logger::fileLogging == true && Logger::consoleLogging == true
-		&& target == Logger::BOTH)
+	if (target == Logger::BOTH)
 	{
-		std::cout << text << std::endl;
-		logFile << text << std::endl;
+		if(Logger::consoleLogging == true)std::cout << text << std::endl;
+		if(Logger::fileLogging == true)logFile << text << std::endl;
 	}
 }
 
@@ -114,10 +113,43 @@ void Logger::enableLogging(Logger::logTarget target)
 
 void Logger::disableLogging(Logger::logTarget target)
 {
-	Logger::consoleLogging = false;
+	switch (target)
+	{
+	case Logger::logTarget::FILE:	Logger::fileLogging = false;
+		break;
+
+	case Logger::logTarget::CONSOLE:	Logger::consoleLogging = false;
+		break;
+
+	case Logger::logTarget::BOTH:	Logger::fileLogging = false;
+		Logger::consoleLogging = false;
+		break;
+
+	default: break;
+	}
 }
 
-int RoboticArm::Logger::multi(int a, int b)
+bool RoboticArm::Logger::isLoggingEnabled(logTarget target)
 {
-	return a *b;
+	switch (target) 
+	{
+
+	case BOTH:	if (consoleLogging == true && fileLogging == true)return true;
+
+		break;
+
+	case FILE:	if (fileLogging == true)return true;
+
+		break;
+
+	case CONSOLE: if (consoleLogging == true)return true;
+
+		break;
+
+	default: break;
+	
+	}
+	
+	return false;
+
 }

@@ -9,29 +9,63 @@ namespace UnitTester
 {		
 	TEST_CLASS(LoggerTest)
 	{
+	private:
+		RoboticArm::Logger* l;
+	
 	public:
-		
+
+		// Must be the first test method
 		TEST_METHOD(getLoggerInstance)
 		{
 			// Get logger instance
-			RoboticArm::Logger* l = RoboticArm::Logger::getInstance();
+			this->l = RoboticArm::Logger::getInstance();
 			Assert::IsNotNull(l);		
 		}
-
-		TEST_METHOD(printToFile) 
+		
+		TEST_METHOD(defaultFileLogginStateCheck) 
 		{
-			// Get logger instance
-			RoboticArm::Logger* l = RoboticArm::Logger::getInstance();
-			l->enableLogging(RoboticArm::Logger::FILE);
-			l->printLine("teszt",RoboticArm::Logger::FILE);
+			Assert::IsFalse(l->isLoggingEnabled(RoboticArm::Logger::FILE));
 		}
 
-		TEST_METHOD(printToFileDenied)
+		TEST_METHOD(defaultConsoleLoggingStateCheck)
 		{
-			// Get logger instance
-			RoboticArm::Logger* l = RoboticArm::Logger::getInstance();
-			//l->enableLogging(RoboticArm::Logger::FILE);
-			l->printLine("teszt", RoboticArm::Logger::FILE);
+			Assert::IsFalse(l->isLoggingEnabled(RoboticArm::Logger::CONSOLE));
+		}
+
+		TEST_METHOD(enableConsoleLoggingTest)
+		{
+			l->enableLogging(RoboticArm::Logger::CONSOLE);
+			Assert::IsTrue(l->isLoggingEnabled(RoboticArm::Logger::CONSOLE));
+		}
+
+		TEST_METHOD(enableFileLoggingTest)
+		{
+			l->enableLogging(RoboticArm::Logger::FILE);
+			Assert::IsTrue(l->isLoggingEnabled(RoboticArm::Logger::FILE));
+		}
+
+		TEST_METHOD(enableFileAndConsoleLoggingTest)
+		{
+			l->enableLogging(RoboticArm::Logger::BOTH);
+			Assert::IsTrue(l->isLoggingEnabled(RoboticArm::Logger::BOTH));
+		}
+
+		TEST_METHOD(disableConsoleLoggingTest)
+		{
+			l->disableLogging(RoboticArm::Logger::CONSOLE);
+			Assert::IsFalse(l->isLoggingEnabled(RoboticArm::Logger::CONSOLE));
+		}
+
+		TEST_METHOD(disableFileLoggingTest)
+		{
+			l->disableLogging(RoboticArm::Logger::FILE);
+			Assert::IsFalse(l->isLoggingEnabled(RoboticArm::Logger::FILE));
+		}
+
+		TEST_METHOD(disableFileAndConsoleLoggingTest)
+		{
+			l->disableLogging(RoboticArm::Logger::BOTH);
+			Assert::IsFalse(l->isLoggingEnabled(RoboticArm::Logger::BOTH));
 		}
 
 	};
