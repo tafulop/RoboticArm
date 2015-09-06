@@ -1,32 +1,33 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 #include <string>
 
 // logger implements singleton design pattern
+
 namespace RoboticArm {
 	
 	class Logger
 	{
 	private:
 		static bool consoleLogging;
+		static bool fileLogging;
 		static bool instanceFlag;
 		static Logger *single;
+		std::ofstream logFile;
 		Logger();
 		~Logger();
 
+
 	public:
-		const enum logTarget { CONSOLE, FILE };
+		const enum logTarget { CONSOLE, FILE, BOTH };
 		static Logger* getInstance();
-		void printToDisplay(std::string text)
-		{
-			if (Logger::consoleLogging == false)return;
-			std::cout << text << std::endl;
-		}
-		void printToDisplay(int number);
+		void printLine(std::string text, logTarget target);
+		void printLine(int number, logTarget target);
 		void lineFeed(int numOfNewLines, logTarget target);
-		void enableConsoleLogging();
-		void disableConsoleLogging();
+		void enableLogging(logTarget target);
+		void disableLogging(logTarget target);
 
 		int multi(int, int);
 

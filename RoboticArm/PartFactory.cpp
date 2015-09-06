@@ -40,12 +40,12 @@ Joint * PartFactory::CreateJoint(float mass, float radialForceLimit, float axial
 	{
 		count++;
 
-		log->printToDisplay("Joint has been created with the following parameters:");
-		log->printToDisplay("ID:	\t\t" + std::to_string(this->id));
-		log->printToDisplay("Mass:	\t\t" + std::to_string(mass));
-		log->printToDisplay("Radial limit:	\t" + std::to_string(radialForceLimit));
-		log->printToDisplay("Axial limit:	\t" + std::to_string(axialForceLimt));
-		log->printToDisplay("");
+		log->printLine("Joint has been created with the following parameters:", Logger::logTarget::BOTH);
+		log->printLine("ID:	\t\t" + std::to_string(this->id), Logger::logTarget::BOTH);
+		log->printLine("Mass:	\t\t" + std::to_string(mass), Logger::logTarget::BOTH);
+		log->printLine("Radial limit:	\t" + std::to_string(radialForceLimit), Logger::logTarget::BOTH);
+		log->printLine("Axial limit:	\t" + std::to_string(axialForceLimt), Logger::logTarget::BOTH);
+		log->printLine("", Logger::logTarget::BOTH);
 
 
 		return new Joint(this->id++, mass, radialForceLimit, axialForceLimt);
@@ -58,14 +58,14 @@ Joint * PartFactory::CreateJoint(float mass, float radialForceLimit, float axial
 
 ArmPart * PartFactory::CreateArmPart(float mass, float length)
 {
-	if (length > 0) 
+	if (length > 0 && mass> 0) 
 	{
 		count++;
-		log->printToDisplay("ArmPart has been created with the following parameters:");
-		log->printToDisplay("ID:	\t\t"	+ std::to_string(this->id));
-		log->printToDisplay("Mass:	\t\t"	+ std::to_string(mass));
-		log->printToDisplay("Length: \t\t"+ std::to_string(length));
-		log->printToDisplay("");
+		log->printLine("ArmPart has been created with the following parameters:", Logger::logTarget::BOTH);
+		log->printLine("ID:	\t\t"	+ std::to_string(this->id), Logger::logTarget::BOTH);
+		log->printLine("Mass:	\t\t"	+ std::to_string(mass), Logger::logTarget::BOTH);
+		log->printLine("Length: \t\t"+ std::to_string(length), Logger::logTarget::BOTH);
+		log->printLine("", Logger::logTarget::BOTH);
 
 		return new ArmPart(this->id++, mass, length);
 	}
@@ -81,10 +81,10 @@ Effector * PartFactory::CreateEffector(float mass)
 	{
 		count++;
 		
-		log->printToDisplay("Effector has been created with the following parameters:");
-		log->printToDisplay("ID: \t\t\t" + std::to_string(id));
-		log->printToDisplay("Mass: \t\t\t" + std::to_string(mass));
-		log->printToDisplay("");
+		log->printLine("Effector has been created with the following parameters:", Logger::logTarget::BOTH);
+		log->printLine("ID: \t\t\t" + std::to_string(id), Logger::logTarget::BOTH);
+		log->printLine("Mass: \t\t\t" + std::to_string(mass), Logger::logTarget::BOTH);
+		log->printLine("", Logger::logTarget::BOTH);
 
 		return new Effector(this->id++, mass);
 	}

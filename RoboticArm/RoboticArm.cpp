@@ -14,8 +14,8 @@ int main()
 	// Logger test
 	Logger* log;
 	log = Logger::getInstance();
-	log->enableConsoleLogging();
-	log->printToDisplay("Program started...");
+	log->enableLogging(Logger::CONSOLE);
+	log->printLine("Program started...", Logger::CONSOLE);
 	log->lineFeed(1,Logger::CONSOLE);
 	
 	// Partfactory 
@@ -33,7 +33,7 @@ int main()
 	ArmPart* a1 = factory->CreateArmPart(143.6f, 16.7f);
 
 	// NUMBER OF CREATED PARTS
-	log->printToDisplay("Number of parts: " + std::to_string(factory->GetNumberOfParts()));
+	log->printLine("Number of parts: " + std::to_string(factory->GetNumberOfParts()), Logger::CONSOLE);
 	
 
 	return 0;
