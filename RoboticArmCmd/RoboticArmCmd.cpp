@@ -20,7 +20,6 @@ int main()
 	log->lineFeed(1, Logger::CONSOLE);
 
 
-
 	// Partfactory 
 	// TO-DO: use exception to check if returned pointer is not nullptr
 	PartFactory* factory;

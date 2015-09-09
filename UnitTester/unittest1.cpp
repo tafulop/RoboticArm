@@ -5,6 +5,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
+
 namespace UnitTester
 {		
 	TEST_CLASS(LoggerTest)
@@ -13,6 +14,7 @@ namespace UnitTester
 		RoboticArm::Logger* l;
 	
 	public:
+		
 
 		// Must be the first test method
 		TEST_METHOD(getLoggerInstance)
@@ -20,6 +22,16 @@ namespace UnitTester
 			// Get logger instance
 			this->l = RoboticArm::Logger::getInstance();
 			Assert::IsNotNull(l);		
+		}
+
+		TEST_METHOD(singletonTest) {
+
+			RoboticArm::Logger* l1 = RoboticArm::Logger::getInstance();
+			RoboticArm::Logger* l2 = RoboticArm::Logger::getInstance();
+
+			if (l1 != l2) {
+				Assert::Fail;
+			}
 		}
 		
 		TEST_METHOD(defaultFileLogginStateCheck) 
@@ -84,6 +96,17 @@ namespace UnitTester
 			// Singleton behavioral test
 			//RoboticArm::PartFactory* factory2 = RoboticArm::PartFactory::getInstance();
 			//Assert::AreEqual(*factory, *factory2);
+		}
+
+		TEST_METHOD(singletonTest) 
+		{
+			
+			RoboticArm::PartFactory* f1 = RoboticArm::PartFactory::getInstance();
+			RoboticArm::PartFactory* f2 = RoboticArm::PartFactory::getInstance();
+
+			if (f1 != f2) {
+				Assert::Fail();
+			}
 		}
 
 		TEST_METHOD(createJoint)
