@@ -34,13 +34,28 @@ Logger* Logger::getInstance()
 
 }
 
+void RoboticArm::Logger::print(std::string text, logTarget target)
+{
+	switch (target)
+	{
+	case CONSOLE: std::cout << text;
+		break;
+
+	case FILE: logFile << text;
+		break;
+	case BOTH:	std::cout << text;
+				logFile << text;
+	}
+
+}
+
 
 // Print methods
-
 void Logger::printLine(int number, Logger::logTarget target)
 {
 	if (Logger::consoleLogging == true && target == CONSOLE)
 	{
+		
 		std::cout << number << std::endl;
 	}
 
@@ -92,6 +107,46 @@ void Logger::lineFeed(int numOfNewLines, logTarget target)
 	}
 	
 }
+
+void RoboticArm::Logger::printTime(logTarget target)
+{
+	struct tm currentTime;
+	__time64_t long_time;
+	errno_t err;
+	char timebuf[26];	// its always 26 char long
+	std::string t;
+
+	// Get time as 64-bit integer.
+	_time64(&long_time);
+
+	// Convert to local time.
+	err = _localtime64_s(&currentTime, &long_time);
+	if (err)
+	{
+		printf("Invalid argument to _localtime64_s.");
+		exit(1);
+	}
+
+	// convert time to a formatted string
+	t.append(std::to_string(currentTime.tm_year + 1900) + "-" + std::to_string(currentTime.tm_mon + 1) + "-" + std::to_string(currentTime.tm_mday) + " ");
+	t.append(std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec));
+
+
+	// print to desired target
+	switch (target)
+	{
+	case Logger::FILE:	Logger::print(t, Logger::FILE);
+		break;
+
+	case Logger::CONSOLE: Logger::print(t, Logger::CONSOLE);
+		break;
+
+	case Logger::BOTH: Logger::print(t, Logger::BOTH);
+		break;
+	}
+}
+
+
 
 void Logger::enableLogging(Logger::logTarget target)
 {

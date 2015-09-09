@@ -15,8 +15,11 @@ int main()
 	Logger* log;
 	log = Logger::getInstance();
 	log->enableLogging(Logger::CONSOLE);
-	log->printLine("Program started...", Logger::CONSOLE);
+	log->printTime(Logger::CONSOLE);
+	log->printLine(" Program started...", Logger::CONSOLE);
 	log->lineFeed(1,Logger::CONSOLE);
+	
+
 	
 	// Partfactory 
 	// TO-DO: use exception to check if returned pointer is not nullptr

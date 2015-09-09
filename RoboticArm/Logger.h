@@ -3,7 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+//#include <chrono>
+#include <ctime>
+#include <time.h>
 
 // logger implements singleton design pattern
 
@@ -25,9 +27,11 @@ namespace RoboticArm {
 	public:
 		const enum logTarget { CONSOLE, FILE, BOTH };
 		static Logger* getInstance();
+		void print(std::string text, logTarget target);
 		void printLine(std::string text, logTarget target);
 		void printLine(int number, logTarget target);
 		void lineFeed(int numOfNewLines, logTarget target);
+		void printTime(logTarget target);
 		void enableLogging(logTarget target);
 		void disableLogging(logTarget target);
 		bool isLoggingEnabled(logTarget target);

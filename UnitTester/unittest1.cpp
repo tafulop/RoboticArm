@@ -36,6 +36,7 @@ namespace UnitTester
 		{
 			l->enableLogging(RoboticArm::Logger::CONSOLE);
 			Assert::IsTrue(l->isLoggingEnabled(RoboticArm::Logger::CONSOLE));
+			l->printTime(RoboticArm::Logger::CONSOLE);
 		}
 
 		TEST_METHOD(enableFileLoggingTest)
