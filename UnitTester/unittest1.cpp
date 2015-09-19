@@ -109,6 +109,18 @@ namespace UnitTester
 			}
 		}
 
+		TEST_METHOD(createBody)
+		{
+			// Get factory
+			RoboticArm::PartFactory* factory = RoboticArm::PartFactory::getInstance();
+
+			// Create joint
+			RoboticArm::Body* b = factory->CreateBody(131.0);
+			Assert::IsNotNull(b);
+
+		}
+
+
 		TEST_METHOD(createJoint)
 		{
 			// Get factory

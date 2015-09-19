@@ -94,6 +94,21 @@ Effector * PartFactory::CreateEffector(float mass)
 	}
 }
 
+Body * RoboticArm::PartFactory::CreateBody(float mass)
+{
+	if (mass > 0) {
+		count++;
+
+		log->printLine("Body has been created with the following parameters:", Logger::logTarget::BOTH);
+		log->printLine("ID: \t\t\t" + std::to_string(id), Logger::logTarget::BOTH);
+		log->printLine("Mass: \t\t\t" + std::to_string(mass), Logger::logTarget::BOTH);
+		log->printLine("", Logger::logTarget::BOTH);
+
+		return new Body(this->id++, mass);
+	}
+	return nullptr;
+}
+
 int PartFactory::GetNumberOfParts()
 {
 	return count;

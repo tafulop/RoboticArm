@@ -2,8 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "PartFactory.h"
-#include "Logger.h"
+#include "..\RoboticArm\Logger.h"
+#include "..\RoboticArm\PartFactory.h"
 
 
 int main()
@@ -25,6 +25,9 @@ int main()
 	PartFactory* factory;
 	factory = PartFactory::getInstance();
 
+	// BODY
+	Body* b = factory->CreateBody(1234);
+
 	// JOINT
 	Joint* j1 = factory->CreateJoint(1, 2, 3);
 
@@ -38,7 +41,7 @@ int main()
 	log->printLine("Number of parts: " + std::to_string(factory->GetNumberOfParts()), Logger::CONSOLE);
 
 	// prevent auto-exiting
-	//system("pause");
+	system("pause");
 
 	return 0;
 }

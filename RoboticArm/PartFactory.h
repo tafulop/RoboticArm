@@ -5,6 +5,7 @@
 #include "ArmPart.h"
 #include "Effector.h"
 #include "Logger.h"
+#include "Body.h"
 
 // PartFactroy implements factory design pattern (singleton too)
 namespace RoboticArm {
@@ -16,6 +17,7 @@ namespace RoboticArm {
 		static PartFactory* factory;
 		int count;
 		int id;
+		Part* partList[10];
 		Logger* log;
 
 		PartFactory();
@@ -28,6 +30,7 @@ namespace RoboticArm {
 		Joint* CreateJoint(float mass, float radialForceLimit, float axialForceLimit);
 		ArmPart* CreateArmPart(float mass, float length);
 		Effector* CreateEffector(float mass);
+		Body* CreateBody(float mass);
 
 	};
 

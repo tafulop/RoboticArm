@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArmPart.h" />
+    <ClInclude Include="Body.h" />
     <ClInclude Include="Effector.h" />
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Logger.h" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArmPart.cpp" />
+    <ClCompile Include="Body.cpp" />
     <ClCompile Include="Effector.cpp" />
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Logger.cpp" />
