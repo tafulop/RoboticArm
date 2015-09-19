@@ -4,19 +4,21 @@
 #include "stdafx.h"
 #include "..\RoboticArm\Logger.h"
 #include "..\RoboticArm\PartFactory.h"
+#include "..\RoboticArm\Settings.h"
 
 
 int main()
 {
+	RoboticArm::Settings::logFilePath = "E:\roboticarmlog.txt";
     
 	using namespace RoboticArm;
 
 	// Logger test
 	Logger* log;
 	log = Logger::getInstance();
-	log->enableLogging(Logger::CONSOLE);
-	log->printTime(Logger::CONSOLE);
-	log->printLine(" Program started...", Logger::CONSOLE);
+	log->enableLogging(Logger::BOTH);
+	log->printTime(Logger::BOTH);
+	log->printLine(" Program started...", Logger::BOTH);
 	log->lineFeed(1, Logger::CONSOLE);
 
 

@@ -1,4 +1,5 @@
 #include "Logger.h"
+#include "Settings.h"
 
 using namespace RoboticArm;
 
@@ -10,7 +11,7 @@ bool Logger::fileLogging = false;
 Logger::Logger()
 {
 	instanceFlag = true;
-	logFile.open("E:\\RoboticArmLog2.txt" , std::ios::out | std::ios::trunc);
+	logFile.open(Settings::getLogFilePath() , std::ios::out | std::ios::trunc);
 }
 
 Logger::~Logger()
@@ -38,13 +39,17 @@ void RoboticArm::Logger::print(std::string text, logTarget target)
 {
 	switch (target)
 	{
-	case CONSOLE: std::cout << text;
+	case CONSOLE: 
+		std::cout << text;
 		break;
 
-	case FILE: logFile << text;
+	case FILE: 
+		logFile << text;
 		break;
-	case BOTH:	std::cout << text;
-				logFile << text;
+
+	case BOTH:	
+		std::cout << text;		
+		logFile << text;
 	}
 
 }
@@ -55,7 +60,6 @@ void Logger::printLine(int number, Logger::logTarget target)
 {
 	if (Logger::consoleLogging == true && target == CONSOLE)
 	{
-		
 		std::cout << number << std::endl;
 	}
 
@@ -66,7 +70,9 @@ void Logger::printLine(int number, Logger::logTarget target)
 
 	if (target == Logger::BOTH) 
 	{
-		if (Logger::consoleLogging == true)std::cout << number << std::endl;
+		if (Logger::consoleLogging == true) { 
+			std::cout << number << std::endl; 
+		}
 		if (Logger::fileLogging == true)logFile << number << std::endl;
 	}
 }
@@ -85,8 +91,8 @@ void RoboticArm::Logger::printLine(std::string text, Logger::logTarget target)
 
 	if (target == Logger::BOTH)
 	{
-		if(Logger::consoleLogging == true)std::cout << text << std::endl;
-		if(Logger::fileLogging == true)logFile << text << std::endl;
+		if (Logger::consoleLogging == true) { std::cout << text << std::endl; }
+		if (Logger::fileLogging == true) { logFile << text << std::endl; }
 	}
 }
 
@@ -95,17 +101,14 @@ void RoboticArm::Logger::printLine(std::string text, Logger::logTarget target)
 void Logger::lineFeed(int numOfNewLines, logTarget target)
 {
 	// return if newlines value is invalid
-	if(numOfNewLines < 0)return;
+	if(numOfNewLines < 1)return;
 
 	int i = 0;
 
-	switch (target)
-	{
-	case CONSOLE:		for (i = 0; i < numOfNewLines; i++) {
-							printLine("", target);
-							};
-	}
-	
+	for (i = 0; i < numOfNewLines; i++) {
+		printLine("", target);
+	};
+		
 }
 
 void RoboticArm::Logger::printTime(logTarget target)
@@ -133,17 +136,7 @@ void RoboticArm::Logger::printTime(logTarget target)
 
 
 	// print to desired target
-	switch (target)
-	{
-	case Logger::FILE:	Logger::print(t, Logger::FILE);
-		break;
-
-	case Logger::CONSOLE: Logger::print(t, Logger::CONSOLE);
-		break;
-
-	case Logger::BOTH: Logger::print(t, Logger::BOTH);
-		break;
-	}
+	Logger::print(t, Logger::FILE);
 }
 
 
