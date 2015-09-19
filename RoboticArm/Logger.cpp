@@ -11,7 +11,7 @@ bool Logger::fileLogging = false;
 Logger::Logger()
 {
 	instanceFlag = true;
-	logFile.open(Settings::getLogFilePath() , std::ios::out | std::ios::trunc);
+	logFile.open("E:\\armlog.txt" , std::ios::out | std::ios::trunc);
 }
 
 Logger::~Logger()
@@ -116,7 +116,6 @@ void RoboticArm::Logger::printTime(logTarget target)
 	struct tm currentTime;
 	__time64_t long_time;
 	errno_t err;
-	char timebuf[26];	// its always 26 char long
 	std::string t;
 
 	// Get time as 64-bit integer.
@@ -182,19 +181,20 @@ bool RoboticArm::Logger::isLoggingEnabled(logTarget target)
 	switch (target) 
 	{
 
-	case BOTH:	if (consoleLogging == true && fileLogging == true)return true;
-
+	case BOTH:	
+		if (consoleLogging == true && fileLogging == true)return true;
 		break;
 
-	case FILE:	if (fileLogging == true)return true;
-
+	case FILE:	
+		if (fileLogging == true)return true;
 		break;
 
-	case CONSOLE: if (consoleLogging == true)return true;
-
+	case CONSOLE: 
+		if (consoleLogging == true)return true;
 		break;
 
-	default: break;
+	default: 
+		break;
 	
 	}
 	

@@ -4,7 +4,6 @@ namespace RoboticArm {
 
 	Settings::Settings()
 	{
-		Settings::logFilePath = "E:\roboticarmlog.txt";
 	}
 
 
@@ -14,7 +13,7 @@ namespace RoboticArm {
 
 	std::string Settings::getLogFilePath()
 	{
-		return Settings::logFilePath;
+		return this->logFilePath;
 	}
 
 }

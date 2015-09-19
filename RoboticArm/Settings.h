@@ -4,18 +4,18 @@
 
 namespace RoboticArm {
 
-	static class Settings
+	class Settings
 	{
 
 	private:
 		Settings();
 		~Settings();
 
-		static std::string logFilePath;
+		std::string logFilePath = "E:\arm_log.txt";
 
 	public:
 
-		static std::string getLogFilePath();
+		std::string getLogFilePath();
 
 	};
 

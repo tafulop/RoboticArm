@@ -9,7 +9,7 @@
 
 int main()
 {
-	RoboticArm::Settings::logFilePath = "E:\roboticarmlog.txt";
+	
     
 	using namespace RoboticArm;
 
