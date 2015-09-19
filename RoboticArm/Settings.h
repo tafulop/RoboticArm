@@ -10,12 +10,12 @@ namespace RoboticArm {
 	private:
 		Settings();
 		~Settings();
-
-		std::string logFilePath = "E:\arm_log.txt";
+		static std::string logFilePath;
+		
 
 	public:
-
-		std::string getLogFilePath();
+		
+		static std::string getLogFilePath();
 
 	};
 

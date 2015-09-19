@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "..\RoboticArm\Logger.h"
 #include "..\RoboticArm\PartFactory.h"
+#include "..\RoboticArm\Settings.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -93,9 +94,6 @@ namespace UnitTester
 			RoboticArm::PartFactory* factory = RoboticArm::PartFactory::getInstance();
 			Assert::IsNotNull(factory);
 
-			// Singleton behavioral test
-			//RoboticArm::PartFactory* factory2 = RoboticArm::PartFactory::getInstance();
-			//Assert::AreEqual(*factory, *factory2);
 		}
 
 		TEST_METHOD(singletonTest) 
@@ -184,6 +182,26 @@ namespace UnitTester
 			Assert::IsNull(e);
 
 		}
+
+	};
+
+	/*
+	*	TEST SETTINGS PRESET VALUES
+	*
+	*/
+
+	TEST_CLASS(SettingsTest)
+	{
+	public:
+		TEST_METHOD(logFilePathTest) {
+		
+			if (RoboticArm::Settings::getLogFilePath() != "E:\\armlog.txt")
+			{
+				Assert::Fail();
+			}
+		
+		}
+
 
 	};
 }

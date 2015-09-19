@@ -1,17 +1,19 @@
 #include "Logger.h"
 #include "Settings.h"
 
-using namespace RoboticArm;
+namespace RoboticArm{
 
-bool Logger::instanceFlag = false;
-Logger* Logger::single = nullptr;
-bool Logger::consoleLogging = false;
-bool Logger::fileLogging = false;
+	
+		bool Logger::instanceFlag = false;
+		Logger* Logger::single = nullptr;
+		bool Logger::consoleLogging = false;
+		bool Logger::fileLogging = false;
+	
 
 Logger::Logger()
 {
 	instanceFlag = true;
-	logFile.open("E:\\armlog.txt" , std::ios::out | std::ios::trunc);
+	logFile.open(Settings::getLogFilePath() , std::ios::out | std::ios::app);
 }
 
 Logger::~Logger()
@@ -133,9 +135,8 @@ void RoboticArm::Logger::printTime(logTarget target)
 	t.append(std::to_string(currentTime.tm_year + 1900) + "-" + std::to_string(currentTime.tm_mon + 1) + "-" + std::to_string(currentTime.tm_mday) + " ");
 	t.append(std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec));
 
-
 	// print to desired target
-	Logger::print(t, Logger::FILE);
+	Logger::print(t, target);
 }
 
 
@@ -144,15 +145,18 @@ void Logger::enableLogging(Logger::logTarget target)
 {
 	switch (target) 
 	{
-		case Logger::logTarget::FILE:	Logger::fileLogging = true;
-										break;
+		case Logger::logTarget::FILE:	
+			Logger::fileLogging = true;
+			break;
 
-		case Logger::logTarget::CONSOLE:	Logger::consoleLogging = true;
-											break;
+		case Logger::logTarget::CONSOLE:	
+			Logger::consoleLogging = true;
+			break;
 
-		case Logger::logTarget::BOTH:	Logger::fileLogging = true;
-										Logger::consoleLogging = true;
-										break;
+		case Logger::logTarget::BOTH:	
+			Logger::fileLogging = true;
+			Logger::consoleLogging = true;
+			break;
 
 		default: break;
 	}							
@@ -162,13 +166,16 @@ void Logger::disableLogging(Logger::logTarget target)
 {
 	switch (target)
 	{
-	case Logger::logTarget::FILE:	Logger::fileLogging = false;
+	case Logger::logTarget::FILE:	
+		Logger::fileLogging = false;
 		break;
 
-	case Logger::logTarget::CONSOLE:	Logger::consoleLogging = false;
+	case Logger::logTarget::CONSOLE:	
+		Logger::consoleLogging = false;
 		break;
 
-	case Logger::logTarget::BOTH:	Logger::fileLogging = false;
+	case Logger::logTarget::BOTH:	
+		Logger::fileLogging = false;
 		Logger::consoleLogging = false;
 		break;
 
@@ -199,5 +206,7 @@ bool RoboticArm::Logger::isLoggingEnabled(logTarget target)
 	}
 	
 	return false;
+
+}
 
 }
