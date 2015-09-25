@@ -5,6 +5,7 @@
 #include "..\RoboticArm\Logger.h"
 #include "..\RoboticArm\PartFactory.h"
 #include "..\RoboticArm\Settings.h"
+#include "..\RoboticArm\Matrix.h"
 
 
 int main()
@@ -41,6 +42,11 @@ int main()
 
 	// NUMBER OF CREATED PARTS
 	log->printLine("Number of parts: " + std::to_string(factory->GetNumberOfParts()), Logger::CONSOLE);
+
+	// Matrix test
+	Matrix m = Matrix(3, 4, 5, 6);
+	m.DHTransformation(123.3, 90, 12.3, 23);
+	m.printData();
 
 	// prevent auto-exiting
 	system("pause");

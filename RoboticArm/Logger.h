@@ -14,18 +14,24 @@ namespace RoboticArm {
 	class Logger
 	{
 	private:
+		// variables
 		static bool consoleLogging;
 		static bool fileLogging;
 		static bool instanceFlag;
 		static Logger *single;
 		std::ofstream logFile;
 		std::string logFileName;
+		
+		// methods
 		Logger();
 		~Logger();
 
 
 	public:
+		// variables
 		const enum logTarget { CONSOLE, FILE, BOTH };
+
+		// methods 
 		static Logger* getInstance();
 		void print(std::string text, logTarget target);
 		void printLine(std::string text, logTarget target);
