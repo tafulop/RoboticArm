@@ -40,6 +40,7 @@ namespace RoboticArm {
 		void printTime(logTarget target);
 		void enableLogging(logTarget target);
 		void disableLogging(logTarget target);
+		void printSeparator(logTarget target);
 		bool isLoggingEnabled(logTarget target);
 
 	};

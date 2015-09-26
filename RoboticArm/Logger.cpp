@@ -13,7 +13,13 @@ namespace RoboticArm{
 Logger::Logger()
 {
 	instanceFlag = true;
-	logFile.open(Settings::getLogFilePath() , std::ios::out | std::ios::app);
+	
+		logFile.open(Settings::getLogFilePath(),std::ios::out | std::ios::app);
+		
+		if (logFile.is_open() == false) {
+			system("color 47");
+			std::cout << "ERROR: log file is invalid: " << "'" << Settings::getLogFilePath() << "'" << std::endl;
+		}
 }
 
 Logger::~Logger()
@@ -131,9 +137,32 @@ void RoboticArm::Logger::printTime(logTarget target)
 		exit(1);
 	}
 
+	int y, m, d, h, min, s;
+	std::string y_s, m_s, d_s, h_s, min_s, s_s;
+
+	// compensate year offset
+	y = currentTime.tm_year + 1900;
+	y_s = std::to_string(y);
+	
+	// handling leading zeros
+	m = currentTime.tm_mon + 1;
+	m_s = (m < 10 ? "0" + std::to_string(m) : std::to_string(m));
+	
+	d = currentTime.tm_mday;
+	d_s = d < 10 ? "0" + std::to_string(d) : std::to_string(d);
+
+	h = currentTime.tm_hour;
+	h_s = h < 10 ? "0" + std::to_string(h) : std::to_string(h);
+
+	min = currentTime.tm_min;
+	min_s = min < 10 ? "0" + std::to_string(min) : std::to_string(min);
+
+	s = currentTime.tm_sec;
+	s_s = s < 10 ? "0" + std::to_string(s) : std::to_string(s);
+
 	// convert time to a formatted string
-	t.append(std::to_string(currentTime.tm_year + 1900) + "-" + std::to_string(currentTime.tm_mon + 1) + "-" + std::to_string(currentTime.tm_mday) + " ");
-	t.append(std::to_string(currentTime.tm_hour) + ":" + std::to_string(currentTime.tm_min) + ":" + std::to_string(currentTime.tm_sec));
+	t.append(y_s + "-" + m_s + "-" + d_s + " ");
+	t.append(h_s + ":" + min_s + ":" + s_s);
 
 	// print to desired target
 	Logger::print(t, target);
@@ -181,6 +210,11 @@ void Logger::disableLogging(Logger::logTarget target)
 
 	default: break;
 	}
+}
+
+void Logger::printSeparator(logTarget target)
+{
+	printLine(Settings::getLogSeparatorLine(), target);
 }
 
 bool RoboticArm::Logger::isLoggingEnabled(logTarget target)

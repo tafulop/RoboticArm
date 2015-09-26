@@ -3,8 +3,8 @@
 namespace RoboticArm {
 
 	// settings 
-	std::string Settings::logFilePath = "E:\\armlog.txt";
-
+	std::string Settings::logFilePath = "D:\\armlogs\\armlog.txt";
+	std::string Settings::logSeparatorLine = "---------------------------------------------";
 
 	Settings::Settings()
 	{
@@ -18,6 +18,11 @@ namespace RoboticArm {
 	std::string Settings::getLogFilePath()
 	{
 		return Settings::logFilePath;
+	}
+
+	std::string Settings::getLogSeparatorLine()
+	{
+		return Settings::logSeparatorLine;
 	}
 
 }
