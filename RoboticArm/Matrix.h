@@ -2,23 +2,29 @@
 
 #include <math.h>
 #include <iostream>
+#include "Logger.h"
 
-class Matrix
-{
+namespace RoboticArm {
 
+	class Matrix
+	{
 
-private: 
-	float coordinates[3]; 
-	float hCoordinate;
+	private:
+		
+		// variables
+		float coordinates[3];
+		float hCoordinate;
+		Logger* log;
 
-public:
+	public:
 
-	// X-structors
-	Matrix(float x, float y, float z, float h);
-	~Matrix();
+		// X-structors
+		Matrix(float x, float y, float z, float h);
+		~Matrix();
 
-	// methods
-	void DHTransformation(float qi, float alfa, float di, float ai);
-	void printData();
-};
+		// methods
+		void DHTransformation(float qi, float alfa, float di, float ai);
+		void printData(Logger::logTarget target);
+	};
 
+}

@@ -11,7 +11,6 @@
 int main()
 {
 	
-    
 	using namespace RoboticArm;
 
 	// Logger test
@@ -46,7 +45,7 @@ int main()
 	// Matrix test
 	Matrix m = Matrix(5, 3, 1, 1);
 	m.DHTransformation(3.14*0.75, 0.5 * 3.14, 0.4, 0.2);
-	m.printData();
+	m.printData(Logger::CONSOLE);
 
 	// prevent auto-exiting
 	system("pause");
