@@ -44,8 +44,8 @@ int main()
 	log->printLine("Number of parts: " + std::to_string(factory->GetNumberOfParts()), Logger::CONSOLE);
 
 	// Matrix test
-	Matrix m = Matrix(3, 4, 5, 6);
-	m.DHTransformation(123.3, 90, 12.3, 23);
+	Matrix m = Matrix(5, 3, 1, 1);
+	m.DHTransformation(3.14*0.75, 0.5 * 3.14, 0.4, 0.2);
 	m.printData();
 
 	// prevent auto-exiting

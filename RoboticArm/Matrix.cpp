@@ -1,7 +1,7 @@
 #include "Matrix.h"
 
 
-Matrix::Matrix(int x, int y, int z, int h)
+Matrix::Matrix(float x, float y, float z, float h)
 {
 	this->coordinates[0] = x;
 	this->coordinates[1] = y;
@@ -32,9 +32,23 @@ sin(qi)		cos(qi)cos(alfa)	-cos(qi)sin(alfa)	ai*sin(qi)
 
 void Matrix::DHTransformation(float qi, float alfa, float di, float ai)
 {
-	this->coordinates[0] *= cos(qi) + this->coordinates[1] * sin(qi);
-	this->coordinates[1] = coordinates[0] * -sin(qi)*cos(alfa) + coordinates[1] * cos(qi) * cos(alfa) + coordinates[2] * sin(alfa);
-	this->coordinates[2] = coordinates[0] * sin(qi) * sin(alfa) - coordinates[1] * cos(qi) * sin(alfa) + coordinates[2] * cos(alfa);
+	float x, y, z, w, sinAlfa, cosAlfa, sinQi, cosQi;
+	
+	x = this->coordinates[0];
+	y = this->coordinates[1];
+	z = this->coordinates[2];
+	w = this->coordinates[3];
+
+	sinQi = sin(qi);
+	cosQi = cos(qi);
+	sinAlfa = sin(alfa);
+	cosAlfa = cos(alfa);
+
+	this->coordinates[0] = x * cosQi + y * sinQi;
+	this->coordinates[1] = x * sinQi * cosAlfa + y * cosQi * cosAlfa + z * sinAlfa;
+	this->coordinates[2] = x * sinQi * sinAlfa - y * cosQi * sinAlfa + z * cosAlfa;
+	this->coordinates[3] = x * ai * cosQi + y * sinQi + z * di + w;
+
 }
 
 void Matrix::printData()
@@ -43,5 +57,6 @@ void Matrix::printData()
 	std::cout << "x: " << coordinates[0] << std::endl;
 	std::cout << "y: " << coordinates[1] << std::endl;
 	std::cout << "z: " << coordinates[2] << std::endl;
+	std::cout << "w: " << coordinates[3] << std::endl;
 
 }

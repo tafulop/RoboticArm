@@ -14,7 +14,7 @@ private:
 public:
 
 	// X-structors
-	Matrix(int x, int y, int z, int h);
+	Matrix(float x, float y, float z, float h);
 	~Matrix();
 
 	// methods
