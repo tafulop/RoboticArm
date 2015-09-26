@@ -24,6 +24,7 @@ namespace RoboticArm {
 
 		// methods
 		void DHTransformation(float qi, float alfa, float di, float ai);
+		float getCoordinate(std::string axis);
 		void printData(Logger::logTarget target);
 	};
 

@@ -3,6 +3,8 @@
 #include "..\RoboticArm\Logger.h"
 #include "..\RoboticArm\PartFactory.h"
 #include "..\RoboticArm\Settings.h"
+#include "..\RoboticArm\Matrix.h"
+#include <stdio.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -31,7 +33,7 @@ namespace UnitTester
 			RoboticArm::Logger* l2 = RoboticArm::Logger::getInstance();
 
 			if (l1 != l2) {
-				Assert::Fail;
+				Assert::Fail();
 			}
 		}
 		
@@ -204,4 +206,46 @@ namespace UnitTester
 
 
 	};
+}
+namespace CalculationTester {
+
+	TEST_CLASS(matrixTest) {
+	
+	/*	x: -1.407455
+		y: 1.001131
+		z: 5.659334
+		w: 2.817591		*/
+
+		TEST_METHOD(DenavitHartenbergTransformationTest) {
+
+			using namespace RoboticArm;
+			float x, y, z, w;
+			Matrix m = Matrix(5, 3, 1, 1);
+			m.DHTransformation(3.14f*0.75f, 0.5f * 3.14f, 0.4f, 0.2f);
+
+			wchar_t message[200];
+
+			x = m.getCoordinate("x");
+			y = m.getCoordinate("y");
+			z = m.getCoordinate("z");
+			w = m.getCoordinate("w");
+
+			_swprintf(message, L"Wrong value of x: %f Accepted: -1,407", x);
+			if (x < -1.408 || x > -1.406)Assert::Fail(message, LINE_INFO()); // accepted value: -1.407
+			
+			_swprintf(message, L"Wrong value of y: %f Accepted: 1.001", y);
+			if (y > 1.002 || y < 1.000)Assert::Fail(message, LINE_INFO());		// accepted: 1.001
+
+			_swprintf(message, L"Wrong value of z: %f Accepted: 5.659", z);
+			if (z > 5.660 || z < 5.658)Assert::Fail(message, LINE_INFO()); // 5.659
+			
+			_swprintf(message, L"Wrong value of w: %f Accepted: 2.817", w);
+			if (w < 2.816 || w > 2.818)Assert::Fail(message, LINE_INFO()); // 2.817
+		
+
+		}
+	
+	};
+
+
 }

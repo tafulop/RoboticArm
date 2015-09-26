@@ -55,6 +55,16 @@ namespace RoboticArm {
 
 	}
 
+	float Matrix::getCoordinate(std::string axis)
+	{
+		if (axis == "x")return this->coordinates[0];
+		if (axis == "y")return this->coordinates[1];
+		if (axis == "z")return this->coordinates[2];
+		if (axis == "w")return this->coordinates[3];
+		
+		throw 404;
+	}
+
 	void Matrix::printData(Logger::logTarget target)
 	{
 		log->printLine("Matrix data: ", target);

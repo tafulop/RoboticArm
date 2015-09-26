@@ -6,6 +6,7 @@
 #include "..\RoboticArm\PartFactory.h"
 #include "..\RoboticArm\Settings.h"
 #include "..\RoboticArm\Matrix.h"
+#include <map>
 
 
 int main()
@@ -27,25 +28,35 @@ int main()
 	PartFactory* factory;
 	factory = PartFactory::getInstance();
 
-	// BODY
-	Body* b = factory->CreateBody(1234);
+	// CREATE ARMPARTS
+	std::map<std::string, ArmPart*> ArmParts;
 
-	// JOINT
-	Joint* j1 = factory->CreateJoint(1, 2, 3);
+	ArmParts["L23"] = factory->CreateArmPart(123.45f, 4234.3f);
+	ArmParts["L34"] = factory->CreateArmPart(645.0f, 57.3f);
+	ArmParts["L45"] = factory->CreateArmPart(134536.45f, 4.3f);
+	ArmParts["L5E"] = factory->CreateArmPart(3453.45f, 34.3f);
+
+	// CREATE JOINTS
+	std::map<std::string, Joint*> Joints;
+
+	Joints["J1"] = factory->CreateJoint(1.1f, 100, 100);
+	Joints["J2"] = factory->CreateJoint(2, 100, 100);
+	Joints["J3"] = factory->CreateJoint(3.1f, 100, 100);
+	Joints["J4"] = factory->CreateJoint(4.1f, 100, 100);
+	Joints["J5"] = factory->CreateJoint(5.1f, 100, 100);
 
 	// EFFECTOR
-	Effector* e1 = factory->CreateEffector(123);
+	std::map<std::string, Effector*> Effector;
 
-	// ARMPART
-	ArmPart* a1 = factory->CreateArmPart(143.6f, 16.7f);
+	Effector["E"] = factory->CreateEffector(40);
+
+	// BODY
+	std::map<std::string, Body*> Body;
+
+	Body["B"] = factory->CreateBody(5000);
 
 	// NUMBER OF CREATED PARTS
 	log->printLine("Number of parts: " + std::to_string(factory->GetNumberOfParts()), Logger::CONSOLE);
-
-	// Matrix test
-	Matrix m = Matrix(5, 3, 1, 1);
-	m.DHTransformation(3.14*0.75, 0.5 * 3.14, 0.4, 0.2);
-	m.printData(Logger::CONSOLE);
 
 	// prevent auto-exiting
 	system("pause");
