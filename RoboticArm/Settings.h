@@ -1,10 +1,13 @@
 #pragma once
 
-#include <iostream>
-//#include "Matrix.h"
+#include <iostream>	// log file handling
+#include <sstream>	// xml handling
+#include <fstream>	// xml handling
+#include <stdlib.h> // malloc, free,
+#include "Matrix.h"
 #include "../rapidxml/rapidxml.hpp"
-#include <sstream>
-#include <fstream>
+#include <vector>
+
 
 namespace RoboticArm {
 
@@ -21,7 +24,7 @@ namespace RoboticArm {
 		
 
 	public:
-		static std::string Settings::getConfigXMLData();
+		//static void Settings::getConfigXMLData();
 		static std::string getLogFilePath();
 		static std::string getLogSeparatorLine();
 		//static Matrix getPositionMatrix(std::string partName);

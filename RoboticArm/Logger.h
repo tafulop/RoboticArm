@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-//#include <chrono>
 #include <ctime>
 #include <time.h>
 
@@ -42,6 +41,7 @@ namespace RoboticArm {
 		void disableLogging(logTarget target);
 		void printSeparator(logTarget target);
 		bool isLoggingEnabled(logTarget target);
+		void printProgramStart(logTarget target);
 
 	};
 

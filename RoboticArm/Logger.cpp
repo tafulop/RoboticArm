@@ -24,6 +24,7 @@ Logger::Logger()
 
 Logger::~Logger()
 {
+	single = nullptr;
 	instanceFlag = false;
 	logFile.close();
 }
@@ -241,6 +242,16 @@ bool RoboticArm::Logger::isLoggingEnabled(logTarget target)
 	
 	return false;
 
+}
+
+void Logger::printProgramStart(logTarget target)
+{
+	// Program start message
+	printSeparator(target);
+	printTime(target);
+	printLine(" Program started...", target);
+	printSeparator(target);
+	lineFeed(1, target);
 }
 
 }

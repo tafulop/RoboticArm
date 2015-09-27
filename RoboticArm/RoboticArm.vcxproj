@@ -149,6 +149,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArmCreator.h" />
     <ClInclude Include="ArmPart.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Calculation.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArmCreator.cpp" />
     <ClCompile Include="ArmPart.cpp" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Calculation.cpp" />
