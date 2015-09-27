@@ -11,6 +11,9 @@ namespace RoboticArm {
 
 	private:
 		
+		// default constructor -- needed for part - matrix map
+		//Matrix();
+		
 		// variables
 		float coordinates[3];
 		float hCoordinate;
@@ -19,7 +22,7 @@ namespace RoboticArm {
 	public:
 
 		// X-structors
-		Matrix(float x, float y, float z, float h);
+		Matrix(float x, float y, float z, float w);
 		~Matrix();
 
 		// methods

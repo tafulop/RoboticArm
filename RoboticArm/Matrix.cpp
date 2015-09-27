@@ -1,8 +1,11 @@
 #include "Matrix.h"
 
 namespace RoboticArm {
-
-	Matrix::Matrix(float x, float y, float z, float h)
+/*	Matrix::Matrix()
+	{
+	}*/
+	
+	Matrix::Matrix(float x, float y, float z, float w)
 	{
 		// get logger
 		this->log = Logger::getInstance();
@@ -10,7 +13,7 @@ namespace RoboticArm {
 		this->coordinates[0] = x;
 		this->coordinates[1] = y;
 		this->coordinates[2] = z;
-		this->coordinates[3] = h;
+		this->coordinates[3] = w;
 	}
 
 	Matrix::~Matrix()
