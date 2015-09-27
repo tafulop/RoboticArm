@@ -15,6 +15,7 @@ int main()
 	using namespace RoboticArm;
 
 	// Initializing...
+
 	Logger* log;
 	log = Logger::getInstance();
 	log->enableLogging(Logger::BOTH);
