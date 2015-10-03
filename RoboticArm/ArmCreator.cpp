@@ -33,26 +33,43 @@ namespace RoboticArm {
 	}
 	void ArmCreator::createJoints()
 	{
-		joints.insert(std::make_pair<std::string, Joint*>(std::string("J1"), factory->CreateJoint(1.1f, 100, 100)));
-		joints.insert(std::make_pair<std::string, Joint*>(std::string("J2"), factory->CreateJoint(1.1f, 100, 100)));
-		joints.insert(std::make_pair<std::string, Joint*>(std::string("J3"), factory->CreateJoint(1.1f, 100, 100)));
-		joints.insert(std::make_pair<std::string, Joint*>(std::string("J4"), factory->CreateJoint(1.1f, 100, 100)));
-		joints.insert(std::make_pair<std::string, Joint*>(std::string("J5"), factory->CreateJoint(1.1f, 100, 100)));
+		factory->CreateJoint("J1", 1122, 311, 345);
+		factory->CreateJoint("J2", 1122, 311, 345);
+		factory->CreateJoint("J3", 1122, 311, 345);
+		factory->CreateJoint("J4", 1122, 311, 345);
+		factory->CreateJoint("J5", 1122, 311, 345);
 
 	}
 	void ArmCreator::createArmParts()
 	{
-		armParts.insert(std::make_pair<std::string, ArmPart*>(std::string("L23"), factory->CreateArmPart(123.45f, 4234.3f)));
-		armParts.insert(std::make_pair<std::string, ArmPart*>(std::string("L34"), factory->CreateArmPart(123.45f, 4234.3f)));
-		armParts.insert(std::make_pair<std::string, ArmPart*>(std::string("L45"), factory->CreateArmPart(123.45f, 4234.3f)));
-		armParts.insert(std::make_pair<std::string, ArmPart*>(std::string("L5E"), factory->CreateArmPart(123.45f, 4234.3f)));
+		factory->CreateArmPart("L12", 3344, 100);
+		factory->CreateArmPart("L23", 3344, 100);
+		factory->CreateArmPart("L34", 3344, 100);
+		factory->CreateArmPart("L45", 3344, 100);
+		factory->CreateArmPart("L5E", 3344, 100);
+
 	}
+	void ArmCreator::createBody()
+	{
+		factory->CreateBody("B", 123534);
+	}
+	void ArmCreator::createEffector()
+	{
+		factory->CreateEffector("E", 123);
+	}
+
 	void ArmCreator::setCoordinates()
 	{
-		jointCoordinates.insert(std::pair<std::string, Matrix>(std::string("B"), Matrix(10.3f, 45, 456.0f, 54)));
-		jointCoordinates.insert(std::pair<std::string, Matrix>(std::string("E"), Matrix(10.3f, 45, 456.0f, 54)));
-		jointCoordinates.insert(std::pair<std::string, Matrix>(std::string("J1"), Matrix(10.3f, 45, 456.0f, 54)));
-		jointCoordinates.insert(std::pair<std::string, Matrix>(std::string("J2"), Matrix(10.3f, 45, 456.0f, 54)));
+		
+	}
+
+	void ArmCreator::fillBondList()
+	{
+		std::string partlist[] = { "B", "J1", "L12", "J2", "L23", "J3", "L34", "J4", "L45", "J5", "L5E", "E", "\terminate" };
+		
+		for (int i = 0; partlist[i] != "\terminate"; i++) {
+			bondList.emplace(bondList.end(), partlist[i]);
+		}
 
 	}
 	void ArmCreator::createRoboticArm()
@@ -60,18 +77,25 @@ namespace RoboticArm {
 		createJoints();
 		createArmParts();
 		setCoordinates();
+		createBody();
+		createEffector();
 	}
 
 	// Calculations
 	void ArmCreator::calcEffectorPosition()
 	{
-		calc->calculateEffectorPosition(&joints, &EffectorPosition);
-		
+		//calc->calculateEffectorPosition(&joints, &armParts, &body, &EffectorPosition);
+
 	}
 
-	void printEffectorMatrix() {
-		EffectorPosition.printData(Logger::BOTH);
+	void ArmCreator::printEffectorMatrix()
+	{
+		this->EffectorPosition.printData(Logger::BOTH);
 	}
 
-	
+	void * ArmCreator::getPartByName(std::string name)
+	{
+		return factory->GetPartByName(name);
+	}
+
 }

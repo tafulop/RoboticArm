@@ -3,6 +3,8 @@
 #include  <map>
 #include "Joint.h"
 #include "Matrix.h"
+#include "Body.h"
+#include <vector>
 
 namespace RoboticArm{
 
@@ -21,7 +23,7 @@ namespace RoboticArm{
 
 	public:
 		static Calculation* getInstance();
-		void calculateEffectorPosition(std::map<std::string, Joint*>* joints, Matrix* EffectorPosition);
+		void calculateEffectorPosition(std::map<std::string, Joint*>* joints, Matrix* EffectorPosition, Body* body, std::vector<std::string> partList);
 	
 	};
 

@@ -1,6 +1,5 @@
 #pragma once
 #include "Part.h"
-#include "Logger.h"
 
 namespace RoboticArm {
 
@@ -10,11 +9,11 @@ namespace RoboticArm {
 
 	private:
 		float length;
-		ArmPart(int id, float mass, float length);
+		ArmPart(int id, std::string name, float mass, float length);
 
-
-	public:	~ArmPart();
-
+	public:	
+		~ArmPart();
+		void printPartData(Logger::logTarget target);
 
 	};
 

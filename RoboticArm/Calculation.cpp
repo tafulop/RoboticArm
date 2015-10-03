@@ -31,19 +31,19 @@ namespace RoboticArm {
 	}
 
 	// Methods
-	void RoboticArm::Calculation::calculateEffectorPosition(std::map<std::string, Joint*>* joints, Matrix * EffectorPosition)
+	void RoboticArm::Calculation::calculateEffectorPosition(std::map<std::string, Joint*>* joints, Matrix * EffectorPosition, Body* body, std::vector<std::string> partList)
 	{
 		// return if joints map does not set
-		if (joints->empty()) { 
+		if (joints->empty() == true) { 
 			log->printLine("ERROR: Joint coordinates map is empty, nothing to calculate.", Logger::BOTH); 
 			return;
 		}
 
-		// iterating trough items
-		for (std::map<std::string, Joint*>::iterator i = joints->begin(); i != joints->end(); ++i) {
-			log->printLine(i->first, Logger::BOTH);
-		
+		// iterating trough parts
+		for (std::vector<std::string>::iterator it = partList.begin(); it != partList.end(); ++it) {
+			std::cout << "baszod: " << *it << std::endl;
 		}
+		
 
 	}
 }

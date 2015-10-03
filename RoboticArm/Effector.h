@@ -8,10 +8,11 @@ namespace RoboticArm {
 		friend class PartFactory;
 
 	private:
-		Effector(int id, float mass);
+		Effector(int id, std::string name, float mass);
 	public:
 		//Effector();
 		~Effector();
+		void printPartData(Logger::logTarget target);
 	};
 
 }

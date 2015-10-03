@@ -21,7 +21,6 @@ namespace RoboticArm {
 		static std::string logSeparatorLine;
 		static std::string xmlFilePath;
 		static std::string xmlFileData;
-		
 
 	public:
 		//static void Settings::getConfigXMLData();

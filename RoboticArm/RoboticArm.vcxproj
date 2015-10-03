@@ -153,6 +153,7 @@
     <ClInclude Include="ArmPart.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Calculation.h" />
+    <ClInclude Include="debug.h" />
     <ClInclude Include="Effector.h" />
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Logger.h" />
@@ -169,6 +170,7 @@
     <ClCompile Include="ArmPart.cpp" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Calculation.cpp" />
+    <ClCompile Include="debug.cpp" />
     <ClCompile Include="Effector.cpp" />
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Logger.cpp" />

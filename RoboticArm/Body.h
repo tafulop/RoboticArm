@@ -8,10 +8,11 @@ namespace RoboticArm{
 		friend class PartFactory;
 
 	private:
-		Body(int id, float mass);
+		Body(int id, std::string name, float mass);
 
 	public:
 		~Body();
+		void printPartData(Logger::logTarget target);
 	};
 
 }

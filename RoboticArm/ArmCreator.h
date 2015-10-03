@@ -6,6 +6,7 @@
 #include <map>
 #include "Calculation.h"
 #include <iostream>
+#include <vector>
 
 namespace RoboticArm {
 	
@@ -37,10 +38,16 @@ namespace RoboticArm {
 		std::map<std::string, ArmPart*> armParts;
 		std::map<std::string, Matrix> jointCoordinates;
 
+		// List of parts
+		std::vector<std::string> bondList;
+
 		// creating methods
 		void createJoints();
 		void createArmParts();
+		void createBody();
+		void createEffector();
 		void setCoordinates();
+		void fillBondList();
 		
 	public:
 		Logger* logger = Logger::getInstance();
@@ -48,7 +55,8 @@ namespace RoboticArm {
 		void createRoboticArm();
 		void calcEffectorPosition();
 		void printEffectorMatrix();
-
+		void* getPartByName(std::string name);
+			
 	};
 
 }

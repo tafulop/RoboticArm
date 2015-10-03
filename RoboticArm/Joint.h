@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Logger.h"
 #include "Part.h"
 
 namespace RoboticArm {
@@ -14,18 +13,12 @@ namespace RoboticArm {
 		float maxRadialForce;
 		float maxAxialForce;
 		float angle;
-		Logger* log;
-		Joint(int id, float mass, float maxRadialForce, float maxAxialForce);
-
+		Joint(int id, std::string name, float mass, float maxRadialForce, float maxAxialForce);
+		
 
 	public:
-
-		// default de/constructor
-		//Joint();
 		~Joint();
-
-
-
+		void printPartData(Logger::logTarget target);
 		bool isAxialOutOfLimit(float force);
 		bool isRadialOutOfLimit(float force);
 	};

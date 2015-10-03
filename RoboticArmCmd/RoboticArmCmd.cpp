@@ -18,7 +18,14 @@ int main()
 	AC->createRoboticArm();
 
 	// Calculation
-	AC->calcEffectorPosition();
+/*	AC->calcEffectorPosition();
+	AC->printEffectorMatrix();
+	AC->calcEffectorPosition();*/
+
+	AC->logger->printLine("Fuck you and your eyebrows!", Logger::BOTH);
+	Part* v1 = (Part*)(AC->getPartByName("B"));
+	Joint* j1 = dynamic_cast<Joint*>(v1);
+	j1->printPartData(Logger::BOTH);
 
 	// prevent from auto-exiting
 	system("pause");

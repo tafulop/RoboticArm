@@ -19,93 +19,85 @@ PartFactory::~PartFactory()
 	instanceFlag = false;
 }
 
-PartFactory* PartFactory::getInstance()
+PartFactory* PartFactory::getInstance() 
 {
-	if (!instanceFlag)
-	{
+	if (!instanceFlag)	{
 		factory = new PartFactory();
 		instanceFlag = true;
 		return factory;
-	}
-	else
-	{
+	}	else	{
 		return factory;
 	}
-
 }
 
-Joint * PartFactory::CreateJoint(float mass, float radialForceLimit, float axialForceLimt)
+Joint* PartFactory::CreateJoint(std::string name, float mass, float radialForceLimit, float axialForceLimt)
 {
-	if (radialForceLimit > 0 && axialForceLimt > 0 && mass > 0)
-	{
+	if (radialForceLimit > 0 && axialForceLimt > 0 && mass > 0 && name.empty() == false)	{
+		Joint temp = Joint(this->id++, name, mass, radialForceLimit, axialForceLimt);
+		joints.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
-
-		log->printLine("Joint has been created with the following parameters:", Logger::logTarget::BOTH);
-		log->printLine("ID:	\t\t" + std::to_string(this->id), Logger::logTarget::BOTH);
-		log->printLine("Mass:	\t\t" + std::to_string(mass), Logger::logTarget::BOTH);
-		log->printLine("Radial limit:	\t" + std::to_string(radialForceLimit), Logger::logTarget::BOTH);
-		log->printLine("Axial limit:	\t" + std::to_string(axialForceLimt), Logger::logTarget::BOTH);
-		log->printLine("", Logger::logTarget::BOTH);
-
-
-		return new Joint(this->id++, mass, radialForceLimit, axialForceLimt);
-	}
-	else
-	{
+		return &joints.find(name)->second;
+	}	else	{
 		return nullptr;
 	}
 }
 
-ArmPart * PartFactory::CreateArmPart(float mass, float length)
+ArmPart* PartFactory::CreateArmPart(std::string name, float mass, float length)
 {
-	if (length > 0 && mass> 0) 
-	{
+	if (length > 0 && mass> 0 && name.empty() == false) {
+		ArmPart temp = ArmPart(this->id++, name, mass, length);
+		armParts.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
-		log->printLine("ArmPart has been created with the following parameters:", Logger::logTarget::BOTH);
-		log->printLine("ID:	\t\t"	+ std::to_string(this->id), Logger::logTarget::BOTH);
-		log->printLine("Mass:	\t\t"	+ std::to_string(mass), Logger::logTarget::BOTH);
-		log->printLine("Length: \t\t"+ std::to_string(length), Logger::logTarget::BOTH);
-		log->printLine("", Logger::logTarget::BOTH);
-
-		return new ArmPart(this->id++, mass, length);
-	}
-	else
-	{
+		return &armParts.find(name)->second;
+	}	else	{
 		return nullptr;
 	}
 }
 
-Effector * PartFactory::CreateEffector(float mass)
+Effector* PartFactory::CreateEffector(std::string name, float mass)
 {
-	if (mass > 0)
-	{
-		count++;
+	if (mass > 0 && name.empty() == false)	{
 		
-		log->printLine("Effector has been created with the following parameters:", Logger::logTarget::BOTH);
-		log->printLine("ID: \t\t\t" + std::to_string(id), Logger::logTarget::BOTH);
-		log->printLine("Mass: \t\t\t" + std::to_string(mass), Logger::logTarget::BOTH);
-		log->printLine("", Logger::logTarget::BOTH);
+		Effector temp = Effector(this->id++, name, mass);
+		effectors.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
+		count++;
+		return &effectors.find(name)->second;
 
-		return new Effector(this->id++, mass);
-	}
-	else
-	{
+	}	else	{
 		return nullptr;
 	}
 }
 
-Body * RoboticArm::PartFactory::CreateBody(float mass)
+Body* RoboticArm::PartFactory::CreateBody(std::string name, float mass)
 {
-	if (mass > 0) {
+	if (mass > 0 && name.empty() == false) {
+		
+		Body temp = Body(this->id++, name, mass);
+		bodies.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
+		return &bodies.find(name)->second;
 
-		log->printLine("Body has been created with the following parameters:", Logger::logTarget::BOTH);
-		log->printLine("ID: \t\t\t" + std::to_string(id), Logger::logTarget::BOTH);
-		log->printLine("Mass: \t\t\t" + std::to_string(mass), Logger::logTarget::BOTH);
-		log->printLine("", Logger::logTarget::BOTH);
-
-		return new Body(this->id++, mass);
+	} else {
+		return nullptr;
 	}
+}
+
+void * RoboticArm::PartFactory::GetPartByName(std::string name)
+{
+	if (name.empty() == true)return nullptr;
+	
+	std::map<std::string, Joint>::iterator j = joints.find(name);
+	if (j != joints.end())return (Joint*)&j->second;
+
+	std::map<std::string, ArmPart>::iterator a = armParts.find(name);
+	if (a != armParts.end())return (ArmPart*)&a->second;
+
+	std::map<std::string, Effector>::iterator e = effectors.find(name);
+	if (e != effectors.end())return (Effector*)&e->second;
+
+	std::map<std::string, Body>::iterator b = bodies.find(name);
+	if (b != bodies.end())return (Body*)&b->second;
+
 	return nullptr;
 }
 
