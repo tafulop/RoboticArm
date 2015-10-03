@@ -10,6 +10,7 @@ namespace RoboticArm {
 	ArmCreator::ArmCreator()
 	{
 	}
+
 	ArmCreator::~ArmCreator()
 	{
 		single = nullptr;
@@ -60,4 +61,17 @@ namespace RoboticArm {
 		createArmParts();
 		setCoordinates();
 	}
+
+	// Calculations
+	void ArmCreator::calcEffectorPosition()
+	{
+		calc->calculateEffectorPosition(&joints, &EffectorPosition);
+		
+	}
+
+	void printEffectorMatrix() {
+		EffectorPosition.printData(Logger::BOTH);
+	}
+
+	
 }

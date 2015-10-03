@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "ArmCreator.h"
+#include "Calculation.h"
 
 
 int main()
@@ -15,6 +16,9 @@ int main()
 
 	// generating robotic arm
 	AC->createRoboticArm();
+
+	// Calculation
+	AC->calcEffectorPosition();
 
 	// prevent from auto-exiting
 	system("pause");

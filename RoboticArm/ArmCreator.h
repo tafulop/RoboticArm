@@ -4,9 +4,12 @@
 #include "PartFactory.h"
 #include "Matrix.h"
 #include <map>
+#include "Calculation.h"
+#include <iostream>
 
 namespace RoboticArm {
 	
+// Singleton
 	class ArmCreator
 	{
 	private:
@@ -17,9 +20,12 @@ namespace RoboticArm {
 		// member variables for instancing
 		static bool instanceFlag;
 		static ArmCreator* single;
+
+		// Other member vars
+		Matrix EffectorPosition = Matrix(0,0,0,0);
+		Calculation* calc = Calculation::getInstance();
 		
 		// common
-		
 		PartFactory* factory = PartFactory::getInstance();
 
 		// Single parts
@@ -40,6 +46,8 @@ namespace RoboticArm {
 		Logger* logger = Logger::getInstance();
 		static ArmCreator* getInstance();
 		void createRoboticArm();
+		void calcEffectorPosition();
+		void printEffectorMatrix();
 
 	};
 
