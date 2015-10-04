@@ -149,7 +149,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArmCreator.h" />
+    <ClInclude Include="AllParts.h" />
+    <ClInclude Include="ArmRunner.h" />
     <ClInclude Include="ArmPart.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Calculation.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Part.h" />
+    <ClInclude Include="PartContainer.h" />
     <ClInclude Include="PartFactory.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Settings.h" />
@@ -166,7 +168,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArmCreator.cpp" />
+    <ClCompile Include="ArmRunner.cpp" />
     <ClCompile Include="ArmPart.cpp" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Calculation.cpp" />
@@ -176,6 +178,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Part.cpp" />
+    <ClCompile Include="PartContainer.cpp" />
     <ClCompile Include="PartFactory.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="stdafx.cpp" />

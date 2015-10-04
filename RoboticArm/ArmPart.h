@@ -14,6 +14,7 @@ namespace RoboticArm {
 	public:	
 		~ArmPart();
 		void printPartData(Logger::logTarget target);
+		std::string getName();
 
 	};
 

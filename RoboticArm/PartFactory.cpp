@@ -30,59 +30,49 @@ PartFactory* PartFactory::getInstance()
 	}
 }
 
-Joint* PartFactory::CreateJoint(std::string name, float mass, float radialForceLimit, float axialForceLimt)
+Joint PartFactory::CreateJoint(std::string name, float mass, float radialForceLimit, float axialForceLimt)
 {
 	if (radialForceLimit > 0 && axialForceLimt > 0 && mass > 0 && name.empty() == false)	{
-		Joint temp = Joint(this->id++, name, mass, radialForceLimit, axialForceLimt);
-		joints.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
-		return &joints.find(name)->second;
+		return Joint(this->id++, name, mass, radialForceLimit, axialForceLimt);
 	}	else	{
-		return nullptr;
+		throw - 1;
 	}
 }
 
-ArmPart* PartFactory::CreateArmPart(std::string name, float mass, float length)
+ArmPart PartFactory::CreateArmPart(std::string name, float mass, float length)
 {
 	if (length > 0 && mass> 0 && name.empty() == false) {
-		ArmPart temp = ArmPart(this->id++, name, mass, length);
-		armParts.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
-		return &armParts.find(name)->second;
+		return ArmPart(this->id++, name, mass, length);
 	}	else	{
-		return nullptr;
+		throw - 1;
 	}
 }
 
-Effector* PartFactory::CreateEffector(std::string name, float mass)
+Effector PartFactory::CreateEffector(std::string name, float mass)
 {
 	if (mass > 0 && name.empty() == false)	{
-		
-		Effector temp = Effector(this->id++, name, mass);
-		effectors.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
-		return &effectors.find(name)->second;
+		return Effector(this->id++, name, mass);
 
 	}	else	{
-		return nullptr;
+		throw - 1;
 	}
 }
 
-Body* RoboticArm::PartFactory::CreateBody(std::string name, float mass)
+Body RoboticArm::PartFactory::CreateBody(std::string name, float mass)
 {
 	if (mass > 0 && name.empty() == false) {
-		
-		Body temp = Body(this->id++, name, mass);
-		bodies.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(temp));
 		count++;
-		return &bodies.find(name)->second;
+		return Body(this->id++, name, mass);
 
 	} else {
-		return nullptr;
+		throw -1;
 	}
 }
 
-void * RoboticArm::PartFactory::GetPartByName(std::string name)
+Part* RoboticArm::PartFactory::GetPartByName(std::string name)
 {
 	if (name.empty() == true)return nullptr;
 	
@@ -94,6 +84,47 @@ void * RoboticArm::PartFactory::GetPartByName(std::string name)
 
 	std::map<std::string, Effector>::iterator e = effectors.find(name);
 	if (e != effectors.end())return (Effector*)&e->second;
+
+	std::map<std::string, Body>::iterator b = bodies.find(name);
+	if (b != bodies.end())return (Body*)&b->second;
+
+	return nullptr;
+}
+
+Joint* RoboticArm::PartFactory::GetJointByName(std::string name)
+{
+	if (name.empty() == true)return nullptr;
+
+	std::map<std::string, Joint>::iterator j = joints.find(name);
+	if (j != joints.end())return (Joint*)&j->second;
+
+	return nullptr;
+}
+
+ArmPart* RoboticArm::PartFactory::GetArmPartByName(std::string name)
+{
+	if (name.empty() == true)return nullptr;
+
+	std::map<std::string, ArmPart>::iterator a = armParts.find(name);
+	if (a != armParts.end())return (ArmPart*)&a->second;
+
+	return nullptr;
+}
+
+Effector* RoboticArm::PartFactory::GetEffectorByName(std::string name)
+{
+	if (name.empty() == true)return nullptr;
+
+	std::map<std::string, Effector>::iterator e = effectors.find(name);
+	if (e != effectors.end())return (Effector*)&e->second;
+
+	return nullptr;
+}
+
+
+Body* RoboticArm::PartFactory::GetBodyByName(std::string name)
+{
+	if (name.empty() == true)return nullptr;
 
 	std::map<std::string, Body>::iterator b = bodies.find(name);
 	if (b != bodies.end())return (Body*)&b->second;

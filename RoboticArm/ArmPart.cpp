@@ -17,6 +17,11 @@ void RoboticArm::ArmPart::printPartData(Logger::logTarget target)
 
 }
 
+std::string RoboticArm::ArmPart::getName()
+{
+	return this->name;
+}
+
 ArmPart::ArmPart(int id, std::string name, float mass, float length)
 {
 	this->length = length;

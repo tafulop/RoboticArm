@@ -33,6 +33,23 @@ void Joint::printPartData(Logger::logTarget target) {
 
 }
 
+void Joint::setBonds(ArmPart* prev, ArmPart* next)
+{
+	log->printLine("Joint bonded to following parts:", Logger::BOTH);
+	log->printLine("Joint name: \t\t" + this->name, Logger::BOTH);
+
+	if (prev != nullptr) {
+		this->prevArmPart = prev;
+		log->printLine("Prev name: \t\t" + this->prevArmPart->getName(), Logger::BOTH);
+	}
+
+	if (next != nullptr) {
+		this->nextArmPart = next;
+		log->printLine("Next name: \t\t" + this->nextArmPart->getName(), Logger::BOTH);
+	}
+	log->printLine("", Logger::BOTH);
+}
+
 bool Joint::isAxialOutOfLimit(float force)
 {
 	if (maxAxialForce <= force) 

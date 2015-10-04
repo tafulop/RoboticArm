@@ -43,11 +43,15 @@ namespace RoboticArm {
 		int GetNumberOfParts();
 
 		// Part creating methods
-		Joint* CreateJoint(std::string name, float mass, float radialForceLimit, float axialForceLimit);
-		ArmPart* CreateArmPart(std::string name, float mass, float length);
-		Effector* CreateEffector(std::string name, float mass);
-		Body* CreateBody(std::string name, float mass);
-		void* GetPartByName(std::string name);
+		Joint CreateJoint(std::string name, float mass, float radialForceLimit, float axialForceLimit);
+		ArmPart CreateArmPart(std::string name, float mass, float length);
+		Effector CreateEffector(std::string name, float mass);
+		Body CreateBody(std::string name, float mass);
+		Part* GetPartByName(std::string name);
+		Joint * GetJointByName(std::string name);
+		ArmPart * GetArmPartByName(std::string name);
+		Effector* GetEffectorByName(std::string name);
+		Body * GetBodyByName(std::string name);
 
 	};
 
