@@ -156,6 +156,7 @@
     <ClInclude Include="Calculation.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="Effector.h" />
+    <ClInclude Include="InverseKinematics.h" />
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Matrix.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Calculation.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Effector.cpp" />
+    <ClCompile Include="InverseKinematics.cpp" />
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Matrix.cpp" />

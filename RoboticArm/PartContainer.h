@@ -20,7 +20,7 @@ namespace RoboticArm {
 		std::unordered_map<std::string, ArmPart> armParts;
 
 		// Partlist
-		std::vector<std::string> partsToCreate;
+		std::vector<std::string> orderedPartList;
 
 		// singleton
 		static bool instanceFlag;
@@ -28,6 +28,7 @@ namespace RoboticArm {
 		PartContainer();
 
 	public:
+		const enum searchDirection {NEXT, PREVIOUS};
 		~PartContainer();
 		static PartContainer* getInstance();
 		void fillPTCL();
@@ -36,18 +37,12 @@ namespace RoboticArm {
 		void createEffectors();
 		void createArmParts();
 		void createAll();
-		Part* findPart(std::string name);
-		
-		// Find methods
-		bool findNextPart(std::string name, Joint** target);
-		bool findNextPart(std::string name, ArmPart** target);
-		bool findNextPart(std::string name, Effector** target);
-		bool findNextPart(std::string name, Body** target);
 
-		bool findPrevPart(std::string name, Joint** target);
-		bool findPrevPart(std::string name, Body** target);
-		bool findPrevPart(std::string name, Effector** target);
-		bool findPrevPart(std::string name, ArmPart** target);
+		// Find methods
+		Part* findPart(std::string name);
+		ArmPart* findArmPart(std::string partName, searchDirection sd);
+		Joint* findJoint(std::string partName, searchDirection sd);
+
 	};
 
 }

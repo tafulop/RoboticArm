@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "ArmRunner.h"
 #include "Calculation.h"
+#include "InverseKinematics.h"
 
 
 int main()
@@ -20,22 +21,12 @@ int main()
 	// Get container
 	PartContainer* PC = PartContainer::getInstance();
 
-	// "B" "J1" "L12" "E"
-
-	PC->fillPTCL();
-	ArmPart* l = nullptr;
-	PC->findNextPart("J1", &l);
-	l->printPartData(Logger::BOTH);
-
-	Body* b = nullptr;
-	PC->findPrevPart("J1", &b);
-	b->printPartData(Logger::BOTH);
+	AR->calculate();
 
 
 
-/*	Body* b = nullptr;
-	if(PC->findPrevPart("J1", b))b->printPartData(Logger::BOTH);*/
-	
+
+
 
 	// prevent from auto-exiting
 	system("pause");

@@ -5,6 +5,8 @@ namespace RoboticArm {
 	bool PartContainer::instanceFlag = false;
 	PartContainer* PartContainer::single = nullptr;
 
+	
+
 	PartContainer::PartContainer()
 	{
 	}
@@ -26,16 +28,28 @@ namespace RoboticArm {
 
 	void PartContainer::fillPTCL()
 	{
-		partsToCreate.emplace(partsToCreate.end(),"B");
-		partsToCreate.emplace(partsToCreate.end(), "J1");
-		partsToCreate.emplace(partsToCreate.end(), "L12");
-		partsToCreate.emplace(partsToCreate.end(), "E");
+		orderedPartList.emplace(orderedPartList.end(),"B");
+		orderedPartList.emplace(orderedPartList.end(), "J1");
+		orderedPartList.emplace(orderedPartList.end(), "L12");
+		orderedPartList.emplace(orderedPartList.end(), "J2");
+		orderedPartList.emplace(orderedPartList.end(), "L23");
+		orderedPartList.emplace(orderedPartList.end(), "J3");
+		orderedPartList.emplace(orderedPartList.end(), "L34");
+		orderedPartList.emplace(orderedPartList.end(), "J4");
+		orderedPartList.emplace(orderedPartList.end(), "L45");
+		orderedPartList.emplace(orderedPartList.end(), "J5");
+		orderedPartList.emplace(orderedPartList.end(), "L5E");
+		orderedPartList.emplace(orderedPartList.end(), "E");
 
 	}
 
 	void PartContainer::createJoints()
 	{
 		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J1"), std::forward_as_tuple(factory->CreateJoint("J1", 1,2,3)));
+		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J2"), std::forward_as_tuple(factory->CreateJoint("J2", 11, 2, 3)));
+		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J3"), std::forward_as_tuple(factory->CreateJoint("J3", 111, 2, 3)));
+		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J4"), std::forward_as_tuple(factory->CreateJoint("J4", 1111, 2, 3)));
+		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J5"), std::forward_as_tuple(factory->CreateJoint("J5", 11111, 2, 3)));
 	}
 
 	void PartContainer::createBodies()
@@ -51,6 +65,10 @@ namespace RoboticArm {
 	void PartContainer::createArmParts()
 	{
 		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L12"), std::forward_as_tuple(factory->CreateArmPart("L12",1,2)));
+		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L23"), std::forward_as_tuple(factory->CreateArmPart("L23", 1, 2)));
+		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L34"), std::forward_as_tuple(factory->CreateArmPart("L34", 1, 2)));
+		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L45"), std::forward_as_tuple(factory->CreateArmPart("L45", 1, 2)));
+		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L5E"), std::forward_as_tuple(factory->CreateArmPart("L5E", 1, 2)));
 	}
 
 	void PartContainer::createAll()
@@ -80,140 +98,103 @@ namespace RoboticArm {
 		return nullptr;
 	}
 
-	bool PartContainer::findNextPart(std::string name, Joint **target)
+	ArmPart* PartContainer::findArmPart(std::string partName, PartContainer::searchDirection sd)
 	{
-		Joint* temp;
-		for (std::vector<std::string>::iterator it = partsToCreate.begin(); it != partsToCreate.end(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.end()) { 
-					temp = dynamic_cast<Joint*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
+		if (sd == PartContainer::searchDirection::NEXT) {
+			// find the given element
+			std::vector<std::string>::iterator it = orderedPartList.begin();
+			for (; it != orderedPartList.end(); it++) {
+				if (*it == partName)break;
 			}
+
+			// if element not found
+			if (it == orderedPartList.end())return nullptr;
+
+			// if element found try to found the next one
+			Part* tempPtr;
+			for (it++; it != orderedPartList.end(); it++) {
+				tempPtr = findPart(*it);
+				if (tempPtr->getType() == TYPE_ARMPART)return dynamic_cast<ArmPart*>(tempPtr);
+			}
+
+			// if we tried to found it but failed
+			return nullptr;
+		
 		}
-		return false;
+		
+		if (sd == PartContainer::searchDirection::PREVIOUS) {
+			// find the given element
+			std::vector<std::string>::reverse_iterator it = orderedPartList.rbegin();
+			for (; it != orderedPartList.rend(); it++) {
+				if (*it == partName)break;
+			}
+
+			// if element not found
+			if (it == orderedPartList.rend())return nullptr;
+
+			// if element found try to found the next one
+			Part* tempPtr;
+			for (it++; it != orderedPartList.rend(); it++) {
+				tempPtr = findPart(*it);
+				if (tempPtr->getType() == TYPE_ARMPART)return dynamic_cast<ArmPart*>(tempPtr);
+			}
+
+			// if we tried to found it but failed
+			return nullptr;
+		}
+
+		
 	}
 
-	bool PartContainer::findNextPart(std::string name, ArmPart **target)
-	{
-		for (std::vector<std::string>::iterator it = partsToCreate.begin(); it != partsToCreate.end(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.end()) {
-					*target = dynamic_cast<ArmPart*>(findPart(*it));
-					if (target != nullptr) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
 
-	bool PartContainer::findNextPart(std::string name, Effector **target)
-	{
-		Effector* temp;
-		for (std::vector<std::string>::iterator it = partsToCreate.begin(); it != partsToCreate.end(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.end()) {
-					temp = dynamic_cast<Effector*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
 
-	bool PartContainer::findNextPart(std::string name, Body  **target)
+	Joint* PartContainer::findJoint(std::string partName, PartContainer::searchDirection sd)
 	{
-		Body* temp;
-		delete *target;
+		if (sd == PartContainer::searchDirection::NEXT) {
 
-		for (std::vector<std::string>::iterator it = partsToCreate.begin(); it != partsToCreate.end(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.end()) {
-					temp = dynamic_cast<Body*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
+			// find the given element
+			std::vector<std::string>::iterator it = orderedPartList.begin();
+			for (; it != orderedPartList.end(); it++) {
+				if (*it == partName)break;
 			}
-		}
-		return false;
-	}
 
-	bool PartContainer::findPrevPart(std::string name, Joint **target)
-	{
-		Joint* temp;
-		for (std::vector<std::string>::reverse_iterator it = partsToCreate.rbegin(); it != partsToCreate.rend(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.rend()) {
-					temp = dynamic_cast<Joint*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
+			// if element not found
+			if (it == orderedPartList.end())return nullptr;
 
-	bool PartContainer::findPrevPart(std::string name, Body **target)
-	{
-		Body* temp;
-		for (std::vector<std::string>::reverse_iterator it = partsToCreate.rbegin(); it != partsToCreate.rend(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.rend()) {
-					temp = dynamic_cast<Body*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
+			// if element found try to found the next one
+			Part* tempPtr;
+			for (it++; it != orderedPartList.end(); it++) {
+				tempPtr = findPart(*it);
+				if (tempPtr->getType() == TYPE_JOINT)return dynamic_cast<Joint*>(tempPtr);
 			}
-		}
-		return false;
-	}
 
-	bool PartContainer::findPrevPart(std::string name, Effector **target)
-	{
-		Effector* temp;
-		for (std::vector<std::string>::reverse_iterator it = partsToCreate.rbegin(); it != partsToCreate.rend(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.rend()) {
-					temp = dynamic_cast<Effector*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
+			// if we tried to found it but failed
+			return nullptr;
 
-	bool PartContainer::findPrevPart(std::string name, ArmPart **target)
-	{
-		ArmPart* temp;
-		for (std::vector<std::string>::reverse_iterator it = partsToCreate.rbegin(); it != partsToCreate.rend(); it++) {
-			if (*it == name) {
-				if (++it != partsToCreate.rend()) {
-					temp = dynamic_cast<ArmPart*>(findPart(*it));
-					if (temp != nullptr) {
-						*target = temp;
-						return true;
-					}
-				}
-			}
 		}
-		return false;
+		
+		if (sd == PartContainer::searchDirection::PREVIOUS) {
+			// find the given element
+			std::vector<std::string>::reverse_iterator it = orderedPartList.rbegin();
+			for (; it != orderedPartList.rend(); it++) {
+				if (*it == partName)break;
+			}
+
+			// if element not found
+			if (it == orderedPartList.rend())return nullptr;
+
+			// if element found try to found the next one
+			Part* tempPtr;
+			for (it++; it != orderedPartList.rend(); it++) {
+				tempPtr = findPart(*it);
+				if (tempPtr->getType() == TYPE_JOINT)return dynamic_cast<Joint*>(tempPtr);
+			}
+
+			// if we tried to found it but failed
+			return nullptr;
+		
+		}
+
 	}
 
 }

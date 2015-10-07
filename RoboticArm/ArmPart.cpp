@@ -28,6 +28,7 @@ ArmPart::ArmPart(int id, std::string name, float mass, float length)
 	this->id = id;
 	this->name = name;
 	this->mass = mass;
+	this->type = TYPE_ARMPART;
 
 	log->printLine("ArmPart has been created with the following parameters:", Logger::BOTH);
 	this->printPartData(Logger::BOTH);

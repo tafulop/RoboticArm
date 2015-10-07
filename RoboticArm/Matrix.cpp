@@ -5,15 +5,18 @@ namespace RoboticArm {
 	{
 	}*/
 	
+	Matrix::Matrix()
+	{
+		x = 0;
+		y = 0;
+		z = 0;
+		w = 0;
+	}
+
 	Matrix::Matrix(float x, float y, float z, float w)
 	{
 		// get logger
 		this->log = Logger::getInstance();
-
-		this->coordinates[0] = x;
-		this->coordinates[1] = y;
-		this->coordinates[2] = z;
-		this->coordinates[3] = w;
 	}
 
 	Matrix::~Matrix()
@@ -39,12 +42,11 @@ namespace RoboticArm {
 
 	void Matrix::DHTransformation(float qi, float alfa, float di, float ai)
 	{
-		float x, y, z, w, sinAlfa, cosAlfa, sinQi, cosQi;
+	/*	
+	
+	float x, y, z, w, sinAlfa, cosAlfa, sinQi, cosQi;
 
-		x = this->coordinates[0];
-		y = this->coordinates[1];
-		z = this->coordinates[2];
-		w = this->coordinates[3];
+		
 
 		sinQi = sin(qi);
 		cosQi = cos(qi);
@@ -55,15 +57,17 @@ namespace RoboticArm {
 		this->coordinates[1] = x * sinQi * cosAlfa + y * cosQi * cosAlfa + z * sinAlfa;
 		this->coordinates[2] = x * sinQi * sinAlfa - y * cosQi * sinAlfa + z * cosAlfa;
 		this->coordinates[3] = x * ai * cosQi + y * sinQi + z * di + w;
+		
+		*/
 
 	}
 
 	float Matrix::getCoordinate(std::string axis)
 	{
-		if (axis == "x")return this->coordinates[0];
-		if (axis == "y")return this->coordinates[1];
-		if (axis == "z")return this->coordinates[2];
-		if (axis == "w")return this->coordinates[3];
+		if (axis == "x")return this->x;
+		if (axis == "y")return this->y;
+		if (axis == "z")return this->z;
+		if (axis == "w")return this->w;
 		
 		throw 404;
 	}
@@ -71,10 +75,19 @@ namespace RoboticArm {
 	void Matrix::printData(Logger::logTarget target)
 	{
 		log->printLine("Matrix data: ", target);
-		log->printLine("x: " + std::to_string(coordinates[0]), target);
-		log->printLine("y: " + std::to_string(coordinates[1]), target);
-		log->printLine("z: " + std::to_string(coordinates[2]), target);
-		log->printLine("w: " + std::to_string(coordinates[3]), target);
+		log->printLine("x: " + std::to_string(x), target);
+		log->printLine("y: " + std::to_string(y), target);
+		log->printLine("z: " + std::to_string(z), target);
+		log->printLine("w: " + std::to_string(w), target);
 	}
+
+	void Matrix::setPosition(float x, float y, float z, float w)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+		this->w = w;
+	}
+
 
 }

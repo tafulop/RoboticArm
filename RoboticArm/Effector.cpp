@@ -7,6 +7,7 @@ Effector::Effector(int id, std::string name, float mass)
 	this->name = name;
 	this->mass = mass;
 	this->id = id;
+	this->type = TYPE_EFFECTOR;
 
 	log->printLine("Effector has been created with the following parameters:", Logger::logTarget::BOTH);
 	this->printPartData(Logger::BOTH);

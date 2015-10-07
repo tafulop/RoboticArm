@@ -35,6 +35,12 @@ namespace RoboticArm {
 	void ArmRunner::createArm()
 	{
 		partContainer->createAll();
+		partContainer->fillPTCL();
+	}
+
+	void ArmRunner::calculate()
+	{
+		IK.calcEffectorPosition();
 	}
 
 }

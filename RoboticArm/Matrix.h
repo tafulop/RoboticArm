@@ -12,16 +12,16 @@ namespace RoboticArm {
 	private:
 		
 		// default constructor -- needed for part - matrix map
-		//Matrix();
+		//;
 		
 		// variables
-		float coordinates[3];
-		float hCoordinate;
+		float x, y, z, w;
 		Logger* log;
 
 	public:
 
 		// X-structors
+		Matrix();
 		Matrix(float x, float y, float z, float w);
 		~Matrix();
 
@@ -29,6 +29,7 @@ namespace RoboticArm {
 		void DHTransformation(float qi, float alfa, float di, float ai);
 		float getCoordinate(std::string axis);
 		void printData(Logger::logTarget target);
+		void setPosition(float x, float y, float z, float w);
 	};
 
 }

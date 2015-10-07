@@ -5,6 +5,7 @@
 #include "Matrix.h"
 #include "Body.h"
 #include <vector>
+#include "PartContainer.h"
 
 namespace RoboticArm{
 
@@ -12,19 +13,16 @@ namespace RoboticArm{
 	{
 
 	private:
-		// private methods
+		Logger* log = Logger::getInstance();
+		PartContainer* PC = PartContainer::getInstance();
+		
+
+	public:
 		Calculation();
 		~Calculation();
 
-		// private member variables
-		static bool instanceFlag;
-		static Calculation *single;
-		Logger* log = Logger::getInstance();
-
-	public:
-		static Calculation* getInstance();
-		void calculateEffectorPosition(std::map<std::string, Joint*>* joints, Matrix* EffectorPosition, Body* body, std::vector<std::string> partList);
-	
+		void setHomePosition();
+		
 	};
 
 }

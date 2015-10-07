@@ -16,6 +16,7 @@ Joint::Joint(int id, std::string name, float mass, float maxRadialForce, float m
 	this->mass = mass;
 	this->maxAxialForce = maxAxialForce;
 	this->maxRadialForce = maxRadialForce;
+	this->type = TYPE_JOINT;
 
 	log->printLine("Joint has been created with the following parameters:", Logger::BOTH);
 	this->printPartData(Logger::BOTH);
@@ -31,23 +32,6 @@ void Joint::printPartData(Logger::logTarget target) {
 	log->printLine("Axial limit:	\t" + std::to_string(this->maxAxialForce), target);
 	log->printLine("", target);
 
-}
-
-void Joint::setBonds(ArmPart* prev, ArmPart* next)
-{
-	log->printLine("Joint bonded to following parts:", Logger::BOTH);
-	log->printLine("Joint name: \t\t" + this->name, Logger::BOTH);
-
-	if (prev != nullptr) {
-		this->prevArmPart = prev;
-		log->printLine("Prev name: \t\t" + this->prevArmPart->getName(), Logger::BOTH);
-	}
-
-	if (next != nullptr) {
-		this->nextArmPart = next;
-		log->printLine("Next name: \t\t" + this->nextArmPart->getName(), Logger::BOTH);
-	}
-	log->printLine("", Logger::BOTH);
 }
 
 bool Joint::isAxialOutOfLimit(float force)

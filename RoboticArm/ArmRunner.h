@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include "PartContainer.h"
 #include <iostream>
+#include "InverseKinematics.h"
 
 
 namespace RoboticArm {
@@ -15,6 +16,7 @@ namespace RoboticArm {
 		static bool instanceFlag;
 		static ArmRunner* single;
 		PartContainer* partContainer = PartContainer::getInstance();
+		InverseKinematics IK;
 		
 
 	public:
@@ -24,6 +26,7 @@ namespace RoboticArm {
 		static ArmRunner* getInstance();
 		Logger* log = Logger::getInstance();
 		void createArm();
+		void calculate();
 
 			
 	};

@@ -8,6 +8,7 @@ namespace RoboticArm {
 		this->id = id;
 		this->name = name;
 		this->mass = mass;
+		this->type = TYPE_BODY;
 
 		log->printLine("Body has been created with the following parameters:", Logger::logTarget::BOTH);
 		this->printPartData(Logger::BOTH);
