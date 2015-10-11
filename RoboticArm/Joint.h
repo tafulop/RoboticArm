@@ -24,6 +24,8 @@ namespace RoboticArm {
 		void printPartData(Logger::logTarget target);
 		bool isAxialOutOfLimit(float force);
 		bool isRadialOutOfLimit(float force);
+		bool setPosition(Matrix* position);
+		void printPosition(Logger::logTarget target);
 	};
 
 }

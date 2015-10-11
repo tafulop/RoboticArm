@@ -15,7 +15,7 @@ namespace RoboticArm {
 		// member variables for instancing
 		static bool instanceFlag;
 		static ArmRunner* single;
-		PartContainer* partContainer = PartContainer::getInstance();
+		PartContainer* PC = PartContainer::getInstance();
 		InverseKinematics IK;
 		
 
@@ -27,6 +27,7 @@ namespace RoboticArm {
 		Logger* log = Logger::getInstance();
 		void createArm();
 		void calculate();
+		bool setHomePosition();
 
 			
 	};

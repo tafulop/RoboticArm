@@ -20,11 +20,12 @@ namespace RoboticArm {
 		static Logger *single;
 		std::ofstream logFile;
 		std::string logFileName;
-		
+
 		// methods
 		Logger();
 		~Logger();
-
+		void setConsoleColor(std::string color);
+		void writeToLogFile(std::string text);
 
 	public:
 		// variables
@@ -35,6 +36,8 @@ namespace RoboticArm {
 		void print(std::string text, logTarget target);
 		void printLine(std::string text, logTarget target);
 		void printLine(int number, logTarget target);
+		void printError(std::string, logTarget);
+		void printWarning(std::string, logTarget);
 		void lineFeed(int numOfNewLines, logTarget target);
 		void printTime(logTarget target);
 		void enableLogging(logTarget target);
@@ -42,6 +45,7 @@ namespace RoboticArm {
 		void printSeparator(logTarget target);
 		bool isLoggingEnabled(logTarget target);
 		void printProgramStart(logTarget target);
+
 		
 
 	};

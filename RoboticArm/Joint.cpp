@@ -30,6 +30,7 @@ void Joint::printPartData(Logger::logTarget target) {
 	log->printLine("Mass:	\t\t" + std::to_string(mass), target);
 	log->printLine("Radial limit:	\t" + std::to_string(this->maxRadialForce), target);
 	log->printLine("Axial limit:	\t" + std::to_string(this->maxAxialForce), target);
+	log->printLine("Axial limit:	\t" + std::to_string(this->maxAxialForce), target);
 	log->printLine("", target);
 
 }
@@ -58,6 +59,25 @@ bool Joint::isRadialOutOfLimit(float force)
 	}
 
 	
+}
+
+bool Joint::setPosition(Matrix * position)
+{
+	if (position != nullptr) {
+		this->position = *position;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void Joint::printPosition(Logger::logTarget target)
+{
+	log->printLine("Position for joint  " + name, Logger::BOTH);
+	this->position.printData(target);
+	//log->lineFeed(1, target);
+
 }
 
 

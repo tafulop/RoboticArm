@@ -21,11 +21,7 @@ int main()
 	// Get container
 	PartContainer* PC = PartContainer::getInstance();
 
-	AR->calculate();
-
-
-
-
+	AR->setHomePosition();
 
 
 	// prevent from auto-exiting

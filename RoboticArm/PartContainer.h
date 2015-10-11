@@ -37,6 +37,7 @@ namespace RoboticArm {
 		void createEffectors();
 		void createArmParts();
 		void createAll();
+		bool setHomePosition(Joint* j);
 
 		// Find methods
 		Part* findPart(std::string name);

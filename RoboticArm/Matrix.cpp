@@ -75,10 +75,10 @@ namespace RoboticArm {
 	void Matrix::printData(Logger::logTarget target)
 	{
 		log->printLine("Matrix data: ", target);
-		log->printLine("x: " + std::to_string(x), target);
-		log->printLine("y: " + std::to_string(y), target);
-		log->printLine("z: " + std::to_string(z), target);
-		log->printLine("w: " + std::to_string(w), target);
+		log->printLine("x: " + std::to_string(this->x), target);
+		log->printLine("y: " + std::to_string(this->y), target);
+		log->printLine("z: " + std::to_string(this->z), target);
+		log->printLine("w: " + std::to_string(this->w), target);
 	}
 
 	void Matrix::setPosition(float x, float y, float z, float w)

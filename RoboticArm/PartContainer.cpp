@@ -2,30 +2,29 @@
 
 namespace RoboticArm {
 
+	// Initializing variables for singleton behavioral
 	bool PartContainer::instanceFlag = false;
 	PartContainer* PartContainer::single = nullptr;
 
-	
+	// X-scructor
+	PartContainer::PartContainer(){}
+	PartContainer::~PartContainer(){}
 
-	PartContainer::PartContainer()
-	{
-	}
-
-	PartContainer::~PartContainer()
-	{
-	}
-
+	// Creates one instance on the first function call, 
+	// returns the one and only pointer for the PartContainer object
 	PartContainer* RoboticArm::PartContainer::getInstance()
 	{
 		if (PartContainer::instanceFlag == false) {
 			PartContainer::single = new PartContainer();
 			PartContainer::instanceFlag = true;
+			return PartContainer::single;
 		}
 		else {
 			return PartContainer::single;
 		}
 	}
 
+	// Fill the parts to be created ordered vector (list)
 	void PartContainer::fillPTCL()
 	{
 		orderedPartList.emplace(orderedPartList.end(),"B");
@@ -71,6 +70,7 @@ namespace RoboticArm {
 		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L5E"), std::forward_as_tuple(factory->CreateArmPart("L5E", 1, 2)));
 	}
 
+	// Creates all parts for the robotic arm, including body, effector, joints and armparts.
 	void PartContainer::createAll()
 	{
 		createBodies();
@@ -79,6 +79,8 @@ namespace RoboticArm {
 		createEffectors();
 	}
 
+	// Tries to find the part with the name passed in the one and only parameter. 
+	// If part not found it will return null pointer.
 	Part * PartContainer::findPart(std::string name)
 	{
 		if (name.empty() == true)return nullptr;
@@ -143,9 +145,9 @@ namespace RoboticArm {
 			return nullptr;
 		}
 
-		
+		// wrong seach parameter
+		return nullptr;
 	}
-
 
 
 	Joint* PartContainer::findJoint(std::string partName, PartContainer::searchDirection sd)
@@ -168,7 +170,7 @@ namespace RoboticArm {
 				if (tempPtr->getType() == TYPE_JOINT)return dynamic_cast<Joint*>(tempPtr);
 			}
 
-			// if we tried to found it but failed
+			// if we tried to found it but we failed
 			return nullptr;
 
 		}
@@ -195,6 +197,7 @@ namespace RoboticArm {
 		
 		}
 
+		return nullptr;
 	}
 
 }

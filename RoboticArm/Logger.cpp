@@ -17,16 +17,18 @@ Logger::Logger()
 		logFile.open(Settings::getLogFilePath(),std::ios::out | std::ios::app);
 		
 		if (logFile.is_open() == false) {
-			system("color 47");
+			//system("color 47");
 			std::cout << "ERROR: log file is invalid: " << "'" << Settings::getLogFilePath() << "'" << std::endl;
 		}
+
+		logFile.close();
 }
 
 Logger::~Logger()
 {
 	single = nullptr;
 	instanceFlag = false;
-	logFile.close();
+
 }
 
 Logger* Logger::getInstance()
@@ -53,15 +55,16 @@ void RoboticArm::Logger::print(std::string text, logTarget target)
 		break;
 
 	case FILE: 
-		logFile << text;
+		writeToLogFile(text);
 		break;
 
 	case BOTH:	
 		std::cout << text;		
-		logFile << text;
+		writeToLogFile(text);
 	}
 
 }
+
 
 
 // Print methods
@@ -74,7 +77,7 @@ void Logger::printLine(int number, Logger::logTarget target)
 
 	if (Logger::fileLogging == true && target == FILE)
 	{
-		logFile << number << std::endl;
+		writeToLogFile(std::to_string(number) + "\n");
 	}
 
 	if (target == Logger::BOTH) 
@@ -82,10 +85,26 @@ void Logger::printLine(int number, Logger::logTarget target)
 		if (Logger::consoleLogging == true) { 
 			std::cout << number << std::endl; 
 		}
-		if (Logger::fileLogging == true)logFile << number << std::endl;
+		if (Logger::fileLogging == true) writeToLogFile(std::to_string(number) + "\n");
 	}
 }
 
+// Prints an error message and sets the console color to red.
+void Logger::printError(std::string message, logTarget target)
+{
+	setConsoleColor("red");
+	printLine("ERROR: " + message, target);
+}
+
+// Prints a warning message, sets the console color to yellow.
+void Logger::printWarning(std::string message, logTarget target)
+{
+	setConsoleColor("yellow");
+	printLine("WARNING: " + message, target);
+}
+
+
+// Prints one line into log target
 void RoboticArm::Logger::printLine(std::string text, Logger::logTarget target)
 {
 	if (Logger::consoleLogging == true && target == CONSOLE)
@@ -95,13 +114,15 @@ void RoboticArm::Logger::printLine(std::string text, Logger::logTarget target)
 
 	if (Logger::fileLogging == true && target == FILE)
 	{
-		logFile << text << std::endl;
+		writeToLogFile(text + "\n");
 	}
 
 	if (target == Logger::BOTH)
 	{
 		if (Logger::consoleLogging == true) { std::cout << text << std::endl; }
-		if (Logger::fileLogging == true) { logFile << text << std::endl; }
+		if (Logger::fileLogging == true) { 
+			writeToLogFile(text + "\n"); 
+		}
 	}
 }
 
@@ -252,6 +273,38 @@ void Logger::printProgramStart(logTarget target)
 	printLine(" Program started...", target);
 	printSeparator(target);
 	lineFeed(1, target);
+}
+
+// Sets the color of the console based on the given parameter and the previous console color.
+// If console color ever sets to red, it can not be modified afterwards.
+void Logger::setConsoleColor(std::string color)
+{
+	static std::string current = "normal";
+	
+	// return if console color is red
+	if (current == "red")return;
+
+	if (color == "red")
+	{	
+		current = "red";
+		system("color 47");
+	}
+	else if (color == "yellow") {
+		system("color 60");
+	}
+	else if(color == "normal"){
+		system("color 07");
+	}
+}
+
+void Logger::writeToLogFile(std::string text)
+{
+	logFile.open(Settings::getLogFilePath(), std::ios::out | std::ios::app);
+
+	logFile << text;
+
+	logFile.close();
+
 }
 
 }
