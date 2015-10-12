@@ -26,6 +26,7 @@ namespace RoboticArm {
 		bool isRadialOutOfLimit(float force);
 		bool setPosition(Matrix* position);
 		void printPosition(Logger::logTarget target);
+		Matrix* getPosition();
 	};
 
 }

@@ -16,7 +16,7 @@ namespace RoboticArm {
 		
 		// variables
 		float x, y, z, w;
-		Logger* log;
+		Logger* log = Logger::getInstance();
 
 	public:
 

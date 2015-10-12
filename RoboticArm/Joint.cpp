@@ -80,4 +80,9 @@ void Joint::printPosition(Logger::logTarget target)
 
 }
 
+Matrix * RoboticArm::Joint::getPosition()
+{
+	return &this->position;
+}
+
 

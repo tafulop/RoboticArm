@@ -15,8 +15,6 @@ namespace RoboticArm {
 
 	Matrix::Matrix(float x, float y, float z, float w)
 	{
-		// get logger
-		this->log = Logger::getInstance();
 	}
 
 	Matrix::~Matrix()

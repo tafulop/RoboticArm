@@ -15,7 +15,7 @@ namespace RoboticArm{
 	private:
 		Logger* log = Logger::getInstance();
 		PartContainer* PC = PartContainer::getInstance();
-		
+
 
 	public:
 		Calculation();

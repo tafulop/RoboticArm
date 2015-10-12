@@ -19,17 +19,31 @@ namespace RoboticArm {
 		jointMatrixes[4].setPosition(1236.2, 445.6, 337, 5455);*/
 	}
 
+	
+
 	void InverseKinematics::calcEffectorPosition()
 	{
 		std::string next = "B";
 		Joint* j;
+		ArmPart* a;
 
 
 		for (int i = 0; i < 5;i++) {
-			j = PC->findJoint(next, PartContainer::searchDirection::NEXT);
+			
+			// get next armpart and joint
+			j = PC->findJoint(next, PartContainer::NEXT);
+			a = PC->findArmPart(next, PartContainer::NEXT);
+
+			// set jwc array
+			this->jointWorldCoordinates[i] = DenavitHartenbergTrans(j->getPosition(), 1, 2, 3, 4);
+
+			// get joint
 			next = j->getName();
 			j->printPartData(Logger::CONSOLE);
 		}
+
+		this->effectorWorldCoordinates = jointWorldCoordinates[4];
+		effectorWorldCoordinates.printData(Logger::BOTH);
 
 	}
 

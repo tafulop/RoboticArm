@@ -22,6 +22,8 @@ int main()
 	PartContainer* PC = PartContainer::getInstance();
 
 	AR->setHomePosition();
+	InverseKinematics k;
+	k.calcEffectorPosition();
 
 
 	// prevent from auto-exiting
