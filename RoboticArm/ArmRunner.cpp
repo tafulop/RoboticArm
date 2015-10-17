@@ -2,7 +2,11 @@
 
 namespace RoboticArm {
 
-	// set default values
+
+	// ***********************************************
+	// Singleton behavior settings and definitions
+	// ***********************************************
+
 	ArmRunner* ArmRunner::single = nullptr;
 	bool ArmRunner::instanceFlag = false;
 
@@ -32,19 +36,29 @@ namespace RoboticArm {
 		}
 	}
 
-	void ArmRunner::createArm()
+	
+
+	// ***********************************************
+	// Normal method definitions
+	// ***********************************************
+
+	// Ask armcreator to create all necessary parts and set home position for them
+	void ArmRunner::initialize()
 	{
-		PC->createAll();
-		PC->fillPTCL();
+		AC->createParts();
 	}
 
-	void ArmRunner::calculate()
+	void ArmRunner::operate()
 	{
-		IK.calcEffectorPosition();
 	}
-
-	// Iterates through all joints and sets the home position for them
-	bool ArmRunner::setHomePosition()
+	
+	
+	
+	
+	
+	
+	
+	/*bool ArmRunner::setHomePosition()
 	{
 		Matrix home[5];
 		home[0].setPosition(123, 546, 213, 1);
@@ -74,6 +88,6 @@ namespace RoboticArm {
 		log->lineFeed(1, Logger::BOTH);
 
 		return true;
-	}
+	}*/
 
 }

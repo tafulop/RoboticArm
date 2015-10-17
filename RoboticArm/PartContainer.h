@@ -31,14 +31,13 @@ namespace RoboticArm {
 		const enum searchDirection {NEXT, PREVIOUS};
 		~PartContainer();
 		static PartContainer* getInstance();
-		void fillPTCL();
-		void createJoints();
-		void createBodies();
-		void createEffectors();
-		void createArmParts();
-		void createAll();
-		bool setHomePosition(Joint* j);
-
+		
+		void setBonds(std::vector<std::string> orderedList);
+		void addJoint(std::string name, float mass, float maxRadialForce, float maxAxialForce);
+		void addBody(std::string name, float mass);
+		void addEffector(std::string name, float mass);
+		void addArmPart(std::string name, float mass, float length);
+	
 		// Find methods
 		Part* findPart(std::string name);
 		ArmPart* findArmPart(std::string partName, searchDirection sd);

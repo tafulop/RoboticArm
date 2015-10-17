@@ -25,59 +25,32 @@ namespace RoboticArm {
 	}
 
 	// Fill the parts to be created ordered vector (list)
-	void PartContainer::fillPTCL()
+	void PartContainer::setBonds(std::vector<std::string> orderedList)
 	{
-		orderedPartList.emplace(orderedPartList.end(),"B");
-		orderedPartList.emplace(orderedPartList.end(), "J1");
-		orderedPartList.emplace(orderedPartList.end(), "L12");
-		orderedPartList.emplace(orderedPartList.end(), "J2");
-		orderedPartList.emplace(orderedPartList.end(), "L23");
-		orderedPartList.emplace(orderedPartList.end(), "J3");
-		orderedPartList.emplace(orderedPartList.end(), "L34");
-		orderedPartList.emplace(orderedPartList.end(), "J4");
-		orderedPartList.emplace(orderedPartList.end(), "L45");
-		orderedPartList.emplace(orderedPartList.end(), "J5");
-		orderedPartList.emplace(orderedPartList.end(), "L5E");
-		orderedPartList.emplace(orderedPartList.end(), "E");
-
+		this->orderedPartList = orderedList;
 	}
 
-	void PartContainer::createJoints()
+	void PartContainer::addJoint(std::string name, float mass, float maxRadialForce, float maxAxialForce)
 	{
-		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J1"), std::forward_as_tuple(factory->CreateJoint("J1", 1,2,3)));
-		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J2"), std::forward_as_tuple(factory->CreateJoint("J2", 11, 2, 3)));
-		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J3"), std::forward_as_tuple(factory->CreateJoint("J3", 111, 2, 3)));
-		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J4"), std::forward_as_tuple(factory->CreateJoint("J4", 1111, 2, 3)));
-		joints.emplace(std::piecewise_construct, std::forward_as_tuple("J5"), std::forward_as_tuple(factory->CreateJoint("J5", 11111, 2, 3)));
+		// TO-DO: check if name is empty
+		joints.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(factory->CreateJoint(name,mass,maxRadialForce,maxAxialForce)));
 	}
 
-	void PartContainer::createBodies()
+	void PartContainer::addBody(std::string name, float mass)
 	{
-		bodies.emplace(std::piecewise_construct, std::forward_as_tuple("B"), std::forward_as_tuple(factory->CreateBody("B", 12)));
+		bodies.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(factory->CreateBody(name, mass)));
 	}
 
-	void PartContainer::createEffectors()
+	void PartContainer::addEffector(std::string name, float mass)
 	{
-		effectors.emplace(std::piecewise_construct, std::forward_as_tuple("E"), std::forward_as_tuple(factory->CreateEffector("E",345)));
+		effectors.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(factory->CreateEffector(name,mass)));
 	}
 
-	void PartContainer::createArmParts()
+	void PartContainer::addArmPart(std::string name, float mass, float length)
 	{
-		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L12"), std::forward_as_tuple(factory->CreateArmPart("L12",1,2)));
-		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L23"), std::forward_as_tuple(factory->CreateArmPart("L23", 1, 2)));
-		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L34"), std::forward_as_tuple(factory->CreateArmPart("L34", 1, 2)));
-		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L45"), std::forward_as_tuple(factory->CreateArmPart("L45", 1, 2)));
-		armParts.emplace(std::piecewise_construct, std::forward_as_tuple("L5E"), std::forward_as_tuple(factory->CreateArmPart("L5E", 1, 2)));
+		armParts.emplace(std::piecewise_construct, std::forward_as_tuple(name), std::forward_as_tuple(factory->CreateArmPart(name,mass,length)));
 	}
 
-	// Creates all parts for the robotic arm, including body, effector, joints and armparts.
-	void PartContainer::createAll()
-	{
-		createBodies();
-		createJoints();
-		createArmParts();
-		createEffectors();
-	}
 
 	// Tries to find the part with the name passed in the one and only parameter. 
 	// If part not found it will return null pointer.

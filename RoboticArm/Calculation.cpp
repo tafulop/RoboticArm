@@ -2,6 +2,11 @@
 
 namespace RoboticArm {
 
+	// ***************************************
+	// Singleton init and method definitions
+	// ***************************************
+	bool Calculation::instanceFlag = false;
+	Calculation* Calculation::single = nullptr;
 
 	// X-structors
 	Calculation::Calculation()
@@ -10,14 +15,29 @@ namespace RoboticArm {
 
 	Calculation::~Calculation()
 	{
-		
+	}
+
+	Calculation * Calculation::getInstance()
+	{
+		if (instanceFlag == false) {
+			instanceFlag = true;
+			single = new Calculation();
+			return single;
+		}
+		else {
+			return single;
+		}
 	}
 
 
-	// set matrixes for the joints
-	void Calculation::setHomePosition()
+	// ***************************************
+	// Normal methods
+	// ***************************************
+
+	// Sets the effector position matrix
+	Matrix Calculation::calculateEffectorPosition()
 	{
-		
+		return Matrix();
 	}
 
 }

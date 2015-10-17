@@ -16,15 +16,7 @@ int main()
 	AR->log->printProgramStart(Logger::BOTH);
 
 	// Creating robotic arm
-	AR->createArm();
-
-	// Get container
-	PartContainer* PC = PartContainer::getInstance();
-
-	AR->setHomePosition();
-	InverseKinematics k;
-	k.calcEffectorPosition();
-
+	AR->initialize();
 
 	// prevent from auto-exiting
 	system("pause");

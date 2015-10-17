@@ -46,8 +46,6 @@ namespace RoboticArm {
 		bool isLoggingEnabled(logTarget target);
 		void printProgramStart(logTarget target);
 
-		
-
 	};
 
 }

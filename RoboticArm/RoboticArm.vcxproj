@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllParts.h" />
+    <ClInclude Include="ArmCreator.h" />
     <ClInclude Include="ArmRunner.h" />
     <ClInclude Include="ArmPart.h" />
     <ClInclude Include="Body.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArmCreator.cpp" />
     <ClCompile Include="ArmRunner.cpp" />
     <ClCompile Include="ArmPart.cpp" />
     <ClCompile Include="Body.cpp" />

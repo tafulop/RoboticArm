@@ -1,10 +1,6 @@
 #pragma once
 
-#include  <map>
-#include "Joint.h"
 #include "Matrix.h"
-#include "Body.h"
-#include <vector>
 #include "PartContainer.h"
 
 namespace RoboticArm{
@@ -13,6 +9,8 @@ namespace RoboticArm{
 	{
 
 	private:
+		static Calculation* single;
+		static bool instanceFlag;
 		Logger* log = Logger::getInstance();
 		PartContainer* PC = PartContainer::getInstance();
 
@@ -20,8 +18,10 @@ namespace RoboticArm{
 	public:
 		Calculation();
 		~Calculation();
+		Calculation* getInstance();
 
-		void setHomePosition();
+		// Normal method declarations
+		Matrix calculateEffectorPosition();
 		
 	};
 

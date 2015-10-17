@@ -1,35 +1,39 @@
 #pragma once
 
 #include "Logger.h"
-#include "PartContainer.h"
 #include <iostream>
-#include "InverseKinematics.h"
+#include "ArmCreator.h"
+#include "Calculation.h"
 
 
 namespace RoboticArm {
 	
-// Singleton
 	class ArmRunner
 	{
 	private:
-		// member variables for instancing
+		// Singleton behavior member variables
 		static bool instanceFlag;
 		static ArmRunner* single;
-		PartContainer* PC = PartContainer::getInstance();
-		InverseKinematics IK;
 		
+		// Normal member variables
+		Calculation* calc;
+		Matrix effectorPosition;
+		ArmCreator* AC = ArmCreator::getInstance();
+
 
 	public:
 		// x-structors
 		ArmRunner();
 		~ArmRunner();
+		
+		// Singleton behaviour
 		static ArmRunner* getInstance();
 		Logger* log = Logger::getInstance();
-		void createArm();
-		void calculate();
-		bool setHomePosition();
 
-			
+		// Normal methods
+		void initialize();
+		void operate();
+	
 	};
 
 }
