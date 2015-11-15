@@ -72,66 +72,6 @@ Body RoboticArm::PartFactory::CreateBody(std::string name, float mass)
 	}
 }
 
-Part* RoboticArm::PartFactory::GetPartByName(std::string name)
-{
-	if (name.empty() == true)return nullptr;
-	
-	std::map<std::string, Joint>::iterator j = joints.find(name);
-	if (j != joints.end())return (Joint*)&j->second;
-
-	std::map<std::string, ArmPart>::iterator a = armParts.find(name);
-	if (a != armParts.end())return (ArmPart*)&a->second;
-
-	std::map<std::string, Effector>::iterator e = effectors.find(name);
-	if (e != effectors.end())return (Effector*)&e->second;
-
-	std::map<std::string, Body>::iterator b = bodies.find(name);
-	if (b != bodies.end())return (Body*)&b->second;
-
-	return nullptr;
-}
-
-Joint* RoboticArm::PartFactory::GetJointByName(std::string name)
-{
-	if (name.empty() == true)return nullptr;
-
-	std::map<std::string, Joint>::iterator j = joints.find(name);
-	if (j != joints.end())return (Joint*)&j->second;
-
-	return nullptr;
-}
-
-ArmPart* RoboticArm::PartFactory::GetArmPartByName(std::string name)
-{
-	if (name.empty() == true)return nullptr;
-
-	std::map<std::string, ArmPart>::iterator a = armParts.find(name);
-	if (a != armParts.end())return (ArmPart*)&a->second;
-
-	return nullptr;
-}
-
-Effector* RoboticArm::PartFactory::GetEffectorByName(std::string name)
-{
-	if (name.empty() == true)return nullptr;
-
-	std::map<std::string, Effector>::iterator e = effectors.find(name);
-	if (e != effectors.end())return (Effector*)&e->second;
-
-	return nullptr;
-}
-
-
-Body* RoboticArm::PartFactory::GetBodyByName(std::string name)
-{
-	if (name.empty() == true)return nullptr;
-
-	std::map<std::string, Body>::iterator b = bodies.find(name);
-	if (b != bodies.end())return (Body*)&b->second;
-
-	return nullptr;
-}
-
 int PartFactory::GetNumberOfParts()
 {
 	return count;

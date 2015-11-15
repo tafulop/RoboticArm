@@ -24,7 +24,11 @@ namespace RoboticArm {
 
 	Simulation::~Simulation()
 	{
+		// Strict queue!
+		// Stop thread
 		this->communicator.~thread();
+		// Close socket
+		zmq_close(this->publisher);
 	}
 
 

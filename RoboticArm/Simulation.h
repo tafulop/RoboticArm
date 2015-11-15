@@ -13,37 +13,39 @@ namespace RoboticArm {
 	class Simulation
 	{
 	private:
-		std::string socketIP = "valami";
-		int port = 5556;
-
-		int sendDelay = 1000;
-
-		// ZMQ Socket
-		void *context;
-		void *publisher;
-
-		int rc;
 
 		// singleton
 		static bool intanceFlag;
 		static Simulation* single;
 
-		// motors
+		// Socket settings
+		std::string socketIP = "valami";
+		int port = 5556;
+
+		// Delay between socket sendings
+		int sendDelay = 1000;
+
+		// ZMQ Socket
+		void *context;
+		void *publisher;
+		int rc;
+
 		// motors
 		std::vector<char*> motors;
 
-
+		// The communicator
 		Communication* c;
 
+		// Socket handler thread
 		std::thread communicator;
 
+		// Socket handler function
 		void static Communicate();
 
-
-
-	public:
 		Simulation();
 		~Simulation();
+	
+	public:
 		void startSend();
 		static Simulation* getInstance();
 	};
