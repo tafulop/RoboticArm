@@ -17,6 +17,8 @@ int main()
 
 	// Creating robotic arm
 	AR->initialize();
+	AR->operate();
+//	PartContainer* PC = PartContainer::getInstance();
 
 	// prevent from auto-exiting
 	system("pause");

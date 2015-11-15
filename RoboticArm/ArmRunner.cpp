@@ -50,10 +50,32 @@ namespace RoboticArm {
 
 	void ArmRunner::operate()
 	{
+		log->printLine("Operating robotic arm.", Logger::BOTH);
+
+
+		std::vector<float> angs;
+		angs.push_back(123);
+		angs.push_back(456);
+		angs.push_back(789);
+		angs.push_back(987);
+		angs.push_back(654);
+
+
+		RoboticArm::Communication* c = Communication::getInstance();
+		c->setAngles(angs);
+
+		Simulation::getInstance()->startSend();
+
+		
+		
+		for (int i = 0; i < 100; i++) {
+			this->effectorPosition = calc->calculateEffectorPosition();
+			log->printLine("Iteration for operating: " + std::to_string(i), Logger::CONSOLE);
+			effectorPosition.printData(Logger::CONSOLE);
+
+			std::this_thread::sleep_for(std::chrono::milliseconds(500));
+		}
 	}
-	
-	
-	
 	
 	
 	

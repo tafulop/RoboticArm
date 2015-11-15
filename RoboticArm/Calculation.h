@@ -2,6 +2,7 @@
 
 #include "Matrix.h"
 #include "PartContainer.h"
+#include "Logger.h"
 
 namespace RoboticArm{
 
@@ -13,15 +14,16 @@ namespace RoboticArm{
 		static bool instanceFlag;
 		Logger* log = Logger::getInstance();
 		PartContainer* PC = PartContainer::getInstance();
-
-
-	public:
 		Calculation();
 		~Calculation();
-		Calculation* getInstance();
+
+	public:
+		
+		static Calculation* getInstance();
 
 		// Normal method declarations
 		Matrix calculateEffectorPosition();
+		Matrix DHT(Matrix*, float, float, float, float);
 		
 	};
 

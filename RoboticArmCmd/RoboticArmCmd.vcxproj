@@ -105,14 +105,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>d:\Development\Robotkar\GIT\RoboticArm\RoboticArm\;C:\Users\fulop\Documents\GitHubVisualStudio\RoboticArm\RoboticArm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\ZeroMQ 4.0.4\bin;C:\Program Files\ZeroMQ 4.0.4\include;d:\Development\Robotkar\GIT\RoboticArm\RoboticArm\;C:\Users\fulop\Documents\GitHubVisualStudio\RoboticArm\RoboticArm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Development\Robotkar\GIT\RoboticArm\x64\Debug;C:\Users\fulop\Documents\GitHubVisualStudio\RoboticArm\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RoboticArmLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\ZeroMQ 4.0.4\bin;c:\Users\fulop\Documents\GitHubVisualStudio\RoboticArm\x64\Debug;C:\Program Files\ZeroMQ 4.0.4\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libzmq-v120-mt-4_0_4.lib;RoboticArmLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

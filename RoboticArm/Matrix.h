@@ -17,6 +17,7 @@ namespace RoboticArm {
 		// variables
 		float x, y, z, w;
 		Logger* log = Logger::getInstance();
+		bool inited = false;
 
 	public:
 
@@ -26,10 +27,11 @@ namespace RoboticArm {
 		~Matrix();
 
 		// methods
-		void DHTransformation(float qi, float alfa, float di, float ai);
 		float getCoordinate(std::string axis);
+		void setCoordinate(std::string axis, float value);
 		void printData(Logger::logTarget target);
 		void setPosition(float x, float y, float z, float w);
+		bool isInitialized();
 	};
 
 }

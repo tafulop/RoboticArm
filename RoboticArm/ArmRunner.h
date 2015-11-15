@@ -4,6 +4,11 @@
 #include <iostream>
 #include "ArmCreator.h"
 #include "Calculation.h"
+#include <chrono>
+#include <thread>
+
+#include "Communication.h"
+#include "Simulation.h"
 
 
 namespace RoboticArm {
@@ -16,7 +21,7 @@ namespace RoboticArm {
 		static ArmRunner* single;
 		
 		// Normal member variables
-		Calculation* calc;
+		Calculation* calc = Calculation::getInstance();
 		Matrix effectorPosition;
 		ArmCreator* AC = ArmCreator::getInstance();
 

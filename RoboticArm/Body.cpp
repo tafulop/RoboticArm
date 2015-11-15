@@ -26,4 +26,13 @@ namespace RoboticArm {
 		log->printLine("", target);
 	}
 
+	Matrix* Body::getPosition() {
+		return &this->position;
+	}
+
+	void Body::setPosition(float x, float y, float z, float w)
+	{
+		this->position.setPosition(x, y, z, w);
+	}
+
 }

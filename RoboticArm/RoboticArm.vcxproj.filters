@@ -69,10 +69,13 @@
     <ClInclude Include="AllParts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InverseKinematics.h">
+    <ClInclude Include="ArmCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ArmCreator.h">
+    <ClInclude Include="Communication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -119,10 +122,13 @@
     <ClCompile Include="PartContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InverseKinematics.cpp">
+    <ClCompile Include="ArmCreator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ArmCreator.cpp">
+    <ClCompile Include="Communication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
