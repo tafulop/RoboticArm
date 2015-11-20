@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FD4DEB72-5AA1-43B6-A13F-D0A5E3A2EB10}</ProjectGuid>
+    <ProjectGuid>{3F8B1CDE-2BF5-4068-A971-C1F3EE323C26}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>RoboticArm</RootNamespace>
+    <RootNamespace>ArmRunnerCMD</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>RoboticArmLib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -40,7 +39,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -75,7 +74,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>C:\Libraries</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -85,7 +83,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -104,17 +103,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files\ZeroMQ 4.0.4\bin;C:\Program Files\ZeroMQ 4.0.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>RoboticArmLib.dll;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Development\Robotkar\GIT\RoboticArm\ArmRunnerCMD\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <Lib>
-      <AdditionalLibraryDirectories>C:\Program Files\ZeroMQ 4.0.4\bin;D:\Development\Robotkar\GIT\RoboticArm\Libraries;C:\Program Files\ZeroMQ 4.0.4\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -156,48 +151,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllParts.h" />
-    <ClInclude Include="ArmCreator.h" />
-    <ClInclude Include="ArmRunner.h" />
-    <ClInclude Include="ArmPart.h" />
-    <ClInclude Include="Body.h" />
-    <ClInclude Include="Calculation.h" />
-    <ClInclude Include="Communication.h" />
-    <ClInclude Include="debug.h" />
-    <ClInclude Include="Effector.h" />
-    <ClInclude Include="Joint.h" />
-    <ClInclude Include="Logger.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Part.h" />
-    <ClInclude Include="PartContainer.h" />
-    <ClInclude Include="PartFactory.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Settings.h" />
-    <ClInclude Include="Simulation.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArmCreator.cpp" />
-    <ClCompile Include="ArmRunner.cpp" />
-    <ClCompile Include="ArmPart.cpp" />
-    <ClCompile Include="Body.cpp" />
-    <ClCompile Include="Calculation.cpp" />
-    <ClCompile Include="Communication.cpp" />
-    <ClCompile Include="debug.cpp" />
-    <ClCompile Include="Effector.cpp" />
-    <ClCompile Include="Joint.cpp" />
-    <ClCompile Include="Logger.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="Part.cpp" />
-    <ClCompile Include="PartContainer.cpp" />
-    <ClCompile Include="PartFactory.cpp" />
-    <ClCompile Include="Settings.cpp" />
-    <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="ArmRunnerCMD.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="RoboticArm.rc" />
+    <ProjectReference Include="..\RoboticArm\RoboticArm.vcxproj">
+      <Project>{fd4deb72-5aa1-43b6-a13f-d0a5e3a2eb10}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -111,7 +111,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\ZeroMQ 4.0.4\bin;c:\Users\fulop\Documents\GitHubVisualStudio\RoboticArm\x64\Debug;C:\Program Files\ZeroMQ 4.0.4\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Libraries;D:\Development\Robotkar\GIT\RoboticArm\x64\Debug;c:\Users\fulop\Documents\GitHubVisualStudio\RoboticArm\x64\Debug;C:\Program Files\ZeroMQ 4.0.4\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libzmq-v120-mt-4_0_4.lib;RoboticArmLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
