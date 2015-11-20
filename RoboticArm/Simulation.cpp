@@ -54,7 +54,7 @@ namespace RoboticArm {
 				std::cout << "Sent message: " << i << std::endl;
 			}
 
-			Sleep(delayTime);
+			Sleep(10);
 		}
 
 	}

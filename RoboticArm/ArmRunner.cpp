@@ -54,11 +54,11 @@ namespace RoboticArm {
 
 
 		std::vector<float> angs;
-		angs.push_back(123);
-		angs.push_back(456);
-		angs.push_back(789);
-		angs.push_back(987);
-		angs.push_back(654);
+		angs.push_back(51);
+		angs.push_back(52);
+		angs.push_back(53);
+		angs.push_back(54);
+		angs.push_back(55);
 
 
 		RoboticArm::Communication* c = Communication::getInstance();

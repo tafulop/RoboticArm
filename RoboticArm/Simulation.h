@@ -23,7 +23,7 @@ namespace RoboticArm {
 		int port = 5556;
 
 		// Delay between socket sendings
-		int sendDelay = 1000;
+		int sendDelay = 1;
 
 		// ZMQ Socket
 		void *context;
